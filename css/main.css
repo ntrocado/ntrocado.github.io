@@ -1,5 +1,5 @@
 body {
-	background: black
+	background: black;
 	color: white }
 section {
 -	background: black;
@@ -11,5 +11,5 @@ section {
 	width: 400px }
 }
 h1, h2, h3, p {
-	color: white;
+	color: white
 }
