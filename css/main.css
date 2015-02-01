@@ -12,9 +12,9 @@ section {
 }
 @font-face {
     font-family: quicksand;
-    src: /fonts/quicksand-regular.otf;
+    src: url(/fonts/quicksand-regular.otf);
 }
 h1, h2, h3, p {
 	color: white;
-	font-family: quicksand;
 }
+h1 {font-family: quicksand}
