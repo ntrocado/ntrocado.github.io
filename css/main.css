@@ -10,6 +10,10 @@ section {
 	margin-right: auto;
 	width: 400px }
 }
+@font-face {
+    font-family: quicksand;
+    src: /fonts/quicksand-regular.otf;
+}
 h1, h2, h3, p {
-	color: white
+	color: white;
 }
