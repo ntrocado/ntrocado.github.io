@@ -3,7 +3,7 @@ body {
 	color: white;
 	font-size: 100%;
 }
-section {
+#front {
 	background: black;
         color: white;
         border-radius: 1em;
