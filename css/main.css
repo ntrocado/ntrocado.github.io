@@ -10,7 +10,7 @@ body {
         padding: 1em;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 900px;
+	max-width: 600px;
 }
 @font-face {
     font-family: 'quicksandregular';
@@ -30,7 +30,7 @@ h1, h2, h3, p {
 h1 {
 	font-family: quicksandregular, Georgia, sans-serif;
 	letter-spacing: 1em;
-	font-size: 1.2em;
+	font-size: 1.5em;
 }
 h3, p {
 	font-size: 0.9em;
