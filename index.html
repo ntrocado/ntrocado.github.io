@@ -6,6 +6,13 @@ title: Nuno Trocado
 	<h1>Nuno Trocado</h1>
 	<img src="/images/front.jpg" />
 	<h3>Próximos concertos:</h3>
+	<ul>
+	{% for concerto in site.data.concertos %}
+  		<li>
+    			{{concerto.data}} . {{concerto.hora}} . {{concerto.projecto}} . {{concerto.membros}} . {{concerto.local}} . {{concerto.cidade}}		
+  		</li>
+	{% endfor %}
+	</ul>
 	<p>6 de Fevereiro . 20h30 . Nuno Trocado Quinteto . ESMAE . Porto</p>
 	<p>21 de Fevereiro . 19h00 . Residência . Portajazz . Porto</p>
 	<p>28 de Fevereiro . 19h00 . Borboletas e Canhões . Portajazz . Porto</p>
