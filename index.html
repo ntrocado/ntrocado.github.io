@@ -8,7 +8,7 @@ title: Nuno Trocado
 	<h3>Próximos concertos:</h3>
 	<ul>
 	{% for concerto in site.data.concertos %}
-  		<li>
+  		<li id="concertos">
     			{{concerto.data}} . {{concerto.hora}} . <strong>{{concerto.projecto}}</strong> . <h6>{{concerto.membros}}</h6> . {{concerto.local}} . {{concerto.cidade}}		
   		</li>
 	{% endfor %}
