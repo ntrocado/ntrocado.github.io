@@ -23,6 +23,11 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
 h1, h2, h3, p, li {
 	color: white;
 	font-family: quicksandregular;
@@ -48,8 +53,3 @@ img {
   }
 }
 
-ul {
-    list-style-type: none;
-    padding: 0px;
-    margin: 0px;
-}
