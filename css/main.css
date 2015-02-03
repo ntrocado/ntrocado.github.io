@@ -52,10 +52,7 @@ img {
   	width: auto; /* for ie 8 */
   }
 }
-#concertos ul li {
+li#concertos {
 	text-indent: -2em;
 	margin-bottom: .7em;
-}
-#concertos small {
-	font-size: 0.7em;
 }
