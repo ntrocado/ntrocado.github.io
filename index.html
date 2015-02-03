@@ -6,7 +6,7 @@ title: Nuno Trocado
 	<h1>Nuno Trocado</h1>
 	<img src="/images/front.jpg" />
 	<h3>Próximos concertos:</h3>
-	<ul>
+	<ul id="concertos">
 	{% for concerto in site.data.concertos %}
   		<li id="concertos">
     			{{concerto.data}} . {{concerto.hora}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
