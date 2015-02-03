@@ -52,4 +52,7 @@ img {
   	width: auto; /* for ie 8 */
   }
 }
-
+#concertos ul li {
+	text-indent: -2em;
+	padding-bottom: 0.5em;
+}
