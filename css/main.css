@@ -54,7 +54,8 @@ img {
 }
 #concertos ul li {
 	text-indent: -2em;
+	margin-bottom: .2em;
 }
-#concertos h6 {
+#concertos-membros {
 	font-size: 0.7em;
 }
