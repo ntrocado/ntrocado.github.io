@@ -9,7 +9,7 @@ title: Nuno Trocado
 	<ul>
 	{% for concerto in site.data.concertos %}
   		<li>
-    			{{concerto.data}} . {{concerto.hora}} . {{concerto.projecto}} . {{concerto.membros}} . {{concerto.local}} . {{concerto.cidade}}		
+    			{{concerto.data}} . {{concerto.hora}} . <strong>{{concerto.projecto}}</strong> . <h6>{{concerto.membros}}</h6> . {{concerto.local}} . {{concerto.cidade}}		
   		</li>
 	{% endfor %}
 	</ul>
