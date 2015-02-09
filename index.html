@@ -8,9 +8,11 @@ title: Nuno Trocado
 	<h3>Próximos concertos:</h3>
 	<ul id="concertos">
 	{% for concerto in site.data.concertos %}
-  		<li id="concertos">
-    			{{concerto.data}} . {{concerto.hora}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
-  		</li>
+		{% if concerto.datahora >= site.time %}
+		 		<li id="concertos">
+    			{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
+				</li>
+		{% endif %}
 	{% endfor %}
 	</ul>
 </div>

@@ -1,20 +1,17 @@
-﻿---
-- data: 6 de Fevereiro de 2015
-  hora: 20h30
+---
+- datahora: 2015-02-06 20:30:00 +0000
   projecto: Nuno Trocado Quinteto
   local: ESMAE
   cidade: Porto
   membros: Nuno Trocado (g), Hugo Ciríaco (ts), Ricardo Pinto (p), Diogo Dinis (b), Nuno Oliveira (d)
   
-- data: 21 de Fevereiro de 2015
-  hora: 19h00
+- datahora: 2015-02-21 19:00:00 +0000
   projecto: "Residencial Porta Jazz: Morris Kliphuis"
   membros: Morris Kliphuis (trompa), João Guimarães (as), Mário Santos (ts), Nuno Trocado (g), Diogo Dinis (b), José Marrucho (d)
   local: Porta Jazz
   cidade: Porto
   
-- data: 28 de Fevereiro de 2015
-  hora: 19h00
+- datahora: 2015-02-28 19:00:00 +0000
   projecto: Borboletas e Canhões
   membros: Nuno Trocado (composição, g), Lígia Silva (f, ts), João Guimarães (as), Hugo Ciríaco (ts), José Pedro Sousa (vcl), Diogo Dinis (b)
   local: Porta Jazz
