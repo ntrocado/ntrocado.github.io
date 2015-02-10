@@ -1,0 +1,24 @@
+---
+layout: default
+title: Nuno Trocado - Projectos
+---
+
+<h2>Futuros:</h2>
+<ul id="concertos">
+{% for concerto in site.data.concertos %}
+	{% if concerto.datahora >= site.time %}
+	 		<li id="concertos">
+   			{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
+			</li>
+	{% endif %}
+{% endfor %}
+</ul>
+<h2>Passados:</h2>
+<ul id="concertos">
+{% for concerto in site.data.concertos %}
+	{% if concerto.datahora < site.time %}
+	 		<li id="concertos">
+   			{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
+			</li>
+	{% endif %}
+{% endfor %}

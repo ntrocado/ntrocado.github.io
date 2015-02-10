@@ -1,13 +1,19 @@
+.prim-escuro { color: #0E0D0E }	/* Main Primary color */
+.prim-claro { color: #F8F8F8 }
+.prim-medio { color: #736473 }
+
+.complement-escuro { color: #343530 }	/* Main Complement color */
+.complement-claro { color: #F8FDE5 }
+.complement-medio { color: #7A7E6A }
+
 body {
-	background: black;
-	color: white;
+	background: #0E0D0E;
+	color: #F8F8F8;
 	font-size: 100%;
 }
 #front {
-	background: black;
-        color: white;
-        border-radius: .8em;
-        padding: .8em;
+	border-radius: .8em;
+    padding: .8em;
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 600px;
@@ -28,20 +34,69 @@ ul {
     padding: 0px;
     margin: 0px;
 }
-h1, h2, h3, p, li {
-	color: white;
+h1, h3, p, li {
+	color: #F8F8F8;
 	font-family: quicksandregular;
+}
+h2 {
+	color: #736473;
+	font-family: quicksandregular;
+	font-size: 1.3em;
 }
 h1 {
 	font-family: quicksandregular, Georgia, sans-serif;
 	letter-spacing: 0.9em;
 	font-size: 2em;
+	margin-top: 0;
+	margin-bottom: 0.2em;
 }
+a.titulo {
+	color: #F8F8F8;
+	text-decoration: none;
+	}
 h3, p {
 	font-size: 1em;
 }
 h3 {
+	margin-top: 0.5em;
 	font-weight: bold;
+}
+#cssmenu ul {
+  margin-bottom: 0.5em;
+  padding: 0;
+  list-style-type: none;
+  width: auto;
+  position: relative;
+  display: block;
+  font-weight: bold;
+  }
+#cssmenu ul:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+#cssmenu li {
+  display: block;
+  float: left;
+  margin: 0;
+}
+#cssmenu li a {
+  display: block;
+  float: left;
+  color: #F8F8F8;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 1em;
+  border-bottom: 3px solid transparent;
+}
+#cssmenu li a:hover {
+  color: #7A7E6A;
+}
+#cssmenu li.active a {
+  display: inline;
+  border-bottom: 3px solid #7A7E6A;
+  float: left;
+  margin-right: 1em;
 }
 img {
 	max-width: 100%;
@@ -56,4 +111,16 @@ li#concertos {
 	text-indent: -2em;
 	margin-bottom: .7em;
 	margin-left: 2em;
+}
+.floatleft {
+	float: left;
+	margin-right: 1em;
+	margin-top: 1em;
+}
+p.texto {
+	text-align: justify;
+	text-indent: 4em;
+}
+section.texto {
+	margin-bottom: 2em;
 }
