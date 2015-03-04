@@ -15,7 +15,7 @@ title: Nuno Trocado - Projectos
 </ul>
 <h2>Passados:</h2>
 <ul id="concertos">
-{% for concerto in site.data.concertos %}
+{% for concerto in site.data.concertos reversed%}
 	{% if concerto.datahora < site.time %}
 	 		<li id="concertos">
    			{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
