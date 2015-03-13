@@ -17,15 +17,15 @@
   local: Porta Jazz
   cidade: Porto
   
-- datahora: 2015-04-21 23:00:00 +0000
-  projecto: José Soares (as), Nuno Trocado (g), João Grilo (p), Filipe Louro (b), Pedro Almiro (d)
-  local: Café Concerto da ESMAE
-  cidade: Porto
-  membros:
-
 - datahora: 2015-04-10 18:00:00 +0000
   projecto: Pãodemónio
   local: Estação de S. Bento
   cidade: Porto
   membros: Fábio Almeida (as, ts), Nuno Trocado (g), Ricardo Pinto (keyb), Marcelo Ruben Aires (d)
  
+- datahora: 2015-04-21 23:00:00 +0000
+  projecto: José Soares (as), Nuno Trocado (g), João Grilo (p), Filipe Louro (b), Pedro Almiro (d)
+  local: Café Concerto da ESMAE
+  cidade: Porto
+  membros:
+
