@@ -17,12 +17,24 @@
   local: Porta Jazz
   cidade: Porto
   
+- datahora: 2015-04-10 22:00:00 +0000
+  projecto: Projecto Maquinista
+  local: Estação de S. Bento
+  cidade: Porto
+  membros: Músicos da Associação Porta-Jazz interpretam peças encomendadas a vários compositores, entre os quais Nuno Trocado.
+  
 - datahora: 2015-04-10 18:00:00 +0000
   projecto: Pãodemónio
-  local: Estação de S. Bento
+  local: Largo da Estação de S. Bento
   cidade: Porto
   membros: Fábio Almeida (as, ts), Nuno Trocado (g), Ricardo Pinto (keyb), Marcelo Ruben Aires (d)
  
+- datahora: 2015-04-11 15:00:00 +0000
+  projecto: Projecto Maquinista
+  local: Estação de S. Bento
+  cidade: Porto
+  membros: Músicos da Associação Porta-Jazz interpretam peças encomendadas a vários compositores, entre os quais Nuno Trocado.
+  
 - datahora: 2015-04-21 23:00:00 +0000
   projecto: José Soares (as), Nuno Trocado (g), João Grilo (p), Filipe Louro (b), Pedro Almiro (d)
   local: Café Concerto da ESMAE
