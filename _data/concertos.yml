@@ -40,6 +40,12 @@
   local: Café Concerto da ESMAE
   cidade: Porto
   membros:
+  
+- datahora: 2015-04-25 23:00:00 +1430
+  projecto: Diogo Dinis Trio
+  local: Jardim do Solar dos Castros
+  cidade: Vila Nova de Cerveira
+  membros: Hugo Ciríaco (ts), Nuno Trocado (g), Diogo Dinis (b)
 
 - datahora: 2015-04-28 21:30:00 +0000
   projecto: Nuno Trocado Trio
@@ -48,8 +54,8 @@
   membros: Nuno Trocado (g), Diogo Dinis (b), Nuno Oliveira (d)
   
 - datahora: 2015-05-08 00:00:00 +0000
-  projecto: Dan Costa
+  projecto: Dan Costa Project
   local: Casa da Música
   cidade: Porto
-  membros: TBA
+  membros: Diego Álvarez (ts), Klênio Barros (t), Nuno Trocado (g), Dan Costa (p), Diogo Dinis (b), Toni Maresca (b)
   
