@@ -2,9 +2,7 @@
 	<html>
 		<head>
 			<title>{{ page.title }}</title>
-			{% if {{ page.description }} != null %}
-				<meta name="description" content={{ page.description }}>
-			{% endif %}
+			{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- link to main stylesheet -->
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
