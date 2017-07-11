@@ -24,7 +24,6 @@
   cidade: Porto
   membros: Músicos da Associação Porta-Jazz interpretam peças encomendadas a vários compositores, entre os quais Nuno Trocado.
 
-
 - datahora: 2015-04-10 18:00:00 +0000
   projecto: Pãodemónio  
   local: Largo da Estação de S. Bento
@@ -108,6 +107,12 @@
   local: Quinta do Caminho
   cidade: Valença
   membros: Nuno Trocado (g), José Soares (as), Diogo Dinis (b), Pedro Alves (d)
+  
+- datahora: 2017-08-04 22:30:00 +0100
+  projecto: João Guimarães Trio
+  local: Quinta do Caminho
+  cidade: Valença
+  membros: João Guimarães (as), Nuno Trocado (g), Diogo Dinis (b)
   
 - datahora: 2017-10-07 21:30:00 +0000  
   projecto: Pãodemónio
