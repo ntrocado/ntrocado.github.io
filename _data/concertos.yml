@@ -108,11 +108,23 @@
   cidade: Valença
   membros: Nuno Trocado (g), José Soares (as), Diogo Dinis (b), Pedro Alves (d)
   
+  - datahora: 2017-07-14 23:30:00 +0100
+  projecto: José Pedro Coelho (ts), Nuno Trocado (g), João Paulo Rosado (b), José Marrucho (d)
+  local: V5
+  cidade: Porto
+  membros:
+  
 - datahora: 2017-08-04 22:30:00 +0100
   projecto: João Guimarães Trio
   local: Quinta do Caminho
   cidade: Valença
   membros: João Guimarães (as), Nuno Trocado (g), Diogo Dinis (b)
+  
+  - datahora: 2017-09-22 00:00:00 +0100
+  projecto: Marcel Pascual Quartet
+  local: Mira Forum
+  cidade: Porto
+  membros: Marcel Pascual (vib), Nuno Trocado (g), Diogo Dinis (b), Nuno Oliveira (d)
   
 - datahora: 2017-10-07 21:30:00 +0000  
   projecto: Pãodemónio
