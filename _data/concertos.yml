@@ -174,7 +174,7 @@
   cidade: Porto
   membros: Coreto Porta-Jazz, Nuno Trocado (compositions)
 
-- datahora: 2017-12-21 23:30:00 +0000
+- datahora: 2017-12-21 23:00:00 +0000
   projecto: José Pedro Coelho (ts), Nuno Trocado (g), João Paulo Rosado (b), Tó Torres (d)
   local: V5
   cidade: Porto
@@ -183,6 +183,12 @@
 - datahora: 2017-12-27 23:00:00 +0000
   projecto: Nuno Trocado (g), Carlos Azevedo (p), João Paulo Rosado (b), Tó Torres (d)
   local: Hot Five
+  cidade: Porto
+  membros:
+
+- datahora: 2010-01-11 23:00:00 +0000
+  projecto: Nuno Trocado (g), Diogo Dinis (b), Acácio Salero (d)
+  local: V5
   cidade: Porto
   membros:
 
