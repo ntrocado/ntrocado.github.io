@@ -1,0 +1,91 @@
+---
+layout: default
+title: "(014) Trichords"
+categories: practice-log
+---
+
+<div id="outline-container-org820439a" class="outline-2">
+<h2 id="org820439a">Practice video</h2>
+<div class="outline-text-2" id="text-org820439a">
+<div class="container">
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/6-5WAR0YGrQ?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> class="video"</iframe>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7bb4fe" class="outline-2">
+<h2 id="orge7bb4fe">A derived tone row</h2>
+<div class="outline-text-2" id="text-orge7bb4fe">
+<p>
+Here's what's going on:
+</p>
+
+<p>
+Append <i>four combinatorial trichords</i><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>: such that all twelve (4x3=12) notes together constitute an aggregate (the twelve notes of the chromatic scale).
+</p>
+
+<p>
+The resulting <i>row</i> is not used exactly in dodecaphonic fashion, because we don't have to progress ineluctably from tone to tone; rather, we define four different places (the four trichords), and we can linger on any of them for as long as we like, or go back and forth between them, or use some as consonances and the others as dissonances. The integrity of the trichord, however, should be preserved&#x2014;in principle all three notes are sounded, simultaneously or in succession, before we progress to the next trichord. This is similar to the technique of <i>triad pairs</i>, but dealing with other three-note groupings beyond the major and minor triads, and with four groupings in total instead of only two.
+</p>
+
+<p>
+This idea is thoroughly explored in John O'Gallagher's book <a href="https://johnogallagher.com/book"><i>Twelve-Tone Improvisation&#x2014;A Method for Using Tone Rows in Jazz</i></a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc37dc3" class="outline-2">
+<h2 id="orgcc37dc3">The nice sounding (014) trichord</h2>
+<div class="outline-text-2" id="text-orgcc37dc3">
+<p>
+Of the existing trichord classes, one that I've been focusing on is (014)<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>. We get a nice intervallic combination of thirds and sixths together with minor seconds (or ninths, etc.) and major sevenths. It also captures the augmented second sound associated, e.g., with the harmonic minor scale, while being a building block for other frequent musical structures. For what it's worth, in a <a href="http://www.mtosmt.org/issues/mto.09.15.5/mto.09.15.5.kuusi.php">2009 study</a>, participants classified it as "non-familiar dissonant", associated with words like "repulsive", "hard", "cold", "cruel", "excited", "unstable", "dangerous", "oppressive", "unfamiliar" and "odd". Given that, what's not to like?
+</p>
+
+<p>
+Building a row from juxtaposing (014) trichords is something that has interested many composers. It offers a high degree of symmetry and combinatorial possibilities. Examples of this specific type of tone rows are common, for example, in Schoenberg (op. 29; op. 41; op. 50c "Modern Psalm"; "Die Jakobsleiter") and Webern (op. 18, no. 2; op. 24; op. 29). One important feature is that two (014) trichords can be put together to generate a hexachord of class (014589)&#x2014;e.g., {C, C#, E, F, Ab, A}&#x2014;otherwise known as the <i>augmented scale</i>, or Babbitt's third order set. This hexachord is also related to Messiaen's third mode of limited transposition.
+</p>
+
+<p>
+There's more than one way of combining the trichords to form the row. I like to use a structure with the following sets:
+</p>
+<p align="center" class="notation">
+<img src="/assets/014-row.svg" alt="Tone row with four (014) trichords"/>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8cc389c" class="outline-2">
+<h2 id="org8cc389c">Open voicing, all rotations</h2>
+<div class="outline-text-2" id="text-org8cc389c">
+<p>
+In the video, I'm practicing the trichords as simultaneities and in open voicing. I take each one of them and go through all the rotations<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>, ascending and descending using the entire range of the instrument.
+Here's the score:
+</p>
+<p align="center" class="notation">
+<img src="/assets/014-rotations.svg" alt="Four (014) trichords: rotations in all registers of the guitar"/>
+</p>
+
+<p>
+This is just for illustration. Playing off the written notation is a very inefficient way of learning this or other concepts.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+This text will use just a tiny bit of <i>pitch class set theory</i> nomenclature. I've met people really hostile to it, for some reason, but for me it's useful for labeling and articulating many musical concepts. If some terms are unfamiliar, a good textbook is <i>Introduction to Post-Tonal Theory</i> by Joseph N. Strauss, and of course there are many instructive materials on-line. Just don't be put off right away.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+Simply put, this is a set of pitches comprising a given starting note (the "0" part), another one up or down a semitone ("1"), and another one up or down four semitones from the starting point ("4"). For example, {C, C#, E} or {C, B, Ab}. Each note can be in any octave and all orderings are equivalent, e.g, {C, C#, E} = {C#, C, E}.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+Take the lowest note and make it the highest, keeping the same pitch class&#x2014;what's commonly known as an <i>inversion</i> in tonal theory.
+</p></div></div>
+
+
+</div>
+</div>

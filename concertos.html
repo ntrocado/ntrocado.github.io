@@ -3,7 +3,7 @@ layout: default
 title: Nuno Trocado - Concertos
 ---
 
-<h2>Futuros:</h2>
+<h2>Futuros</h2>
 <ul id="concertos">
 {% for concerto in site.data.concertos %}
 	{% if concerto.datahora >= site.time %}
@@ -13,7 +13,7 @@ title: Nuno Trocado - Concertos
 	{% endif %}
 {% endfor %}
 </ul>
-<h2>Passados:</h2>
+<h2>Passados</h2>
 <ul id="concertos">
 {% for concerto in site.data.concertos reversed%}
 	{% if concerto.datahora < site.time %}
