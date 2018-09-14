@@ -1,0 +1,14 @@
+---
+layout: default
+title: Nuno Trocado - Practice Log
+---
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <h2> <a href="{{ post.url }}">{{ post.title }}</a> </h2>
+      <h4> {{ post.date | date: "%Y-%m-%d" }}</h4>
+      {{ post.content }}
+    </li>
+  {% endfor %}
+</ul>
