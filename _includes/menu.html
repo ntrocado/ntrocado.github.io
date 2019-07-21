@@ -1,9 +1,10 @@
 <div id='cssmenu'>
 <ul>
 	<li {% if page.url == "/bio.html" %}class="active"{% endif %}><a href="/bio.html">bio</a></li>
-	<li {% if page.url == "/projectos.html" %}class="active"{% endif %}><a href="/projectos.html">projectos</a></li>
- 	<li {% if page.url == "/concertos.html" %}class="active"{% endif %}><a href="/concertos.html">concertos</a></li>
+	<li {% if page.url == "/projectos.html" %}class="active"{% endif %}><a href="/projectos.html">projects</a></li>
+ 	<li {% if page.url == "/concertos.html" %}class="active"{% endif %}><a href="/concertos.html">agenda</a></li>
 	<li {% if page.url == "/log.html" %}class="active"{% endif %}><a href="/log.html">practice log</a></li>
-	<li><a href="mailto:ntrocado@gmail.com">contacto</a></li>
+	<li {% if page.url == "/textos.html" %}class="active"{% endif %}><a href="/textos.html">texts</a></li>
+	<li><a href="mailto:ntrocado@gmail.com">contact</a></li>
 </ul>
 </div>

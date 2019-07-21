@@ -150,14 +150,16 @@ li#concertos {
 .floatleft {
 	float: left;
 	margin-right: 1em;
-	margin-top: 1em;
 }
 p.texto {
 	text-align: justify;
 	text-indent: 4em;
 }
 section.texto {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
+}
+hr {
+    border: solid 1px #736473;
 }
 .container {
     position: relative;
