@@ -100,7 +100,7 @@ p.footpara {
   position: relative;
   display: block;
   font-weight: bold;
-  }
+}
 #cssmenu ul:after {
   content: '';
   display: table;
@@ -109,7 +109,7 @@ p.footpara {
 #cssmenu li {
   display: block;
   float: left;
-  margin: 0;
+  margin-right: 1em;
 }
 #cssmenu li a {
   display: block;
@@ -117,7 +117,6 @@ p.footpara {
   color: #F8F8F8;
   text-decoration: none;
   font-weight: bold;
-  margin-right: 1em;
   border-bottom: 3px solid transparent;
 }
 #cssmenu li a:hover {
@@ -127,7 +126,13 @@ p.footpara {
   display: inline;
   border-bottom: 3px solid #7A7E6A;
   float: left;
-  margin-right: 1em;
+}
+#cssmenu li.icons {
+    float: right;
+}
+#cssmenu li.last-icon {
+    float: right;
+    margin-right: 0;
 }
 img {
 	max-width: 100%;
