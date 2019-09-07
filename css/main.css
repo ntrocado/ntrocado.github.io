@@ -61,10 +61,10 @@ a.titulo {
 }
 sup a, p a {
     text-decoration: underline;
-    color: #7A7E6A;
+    color: #F8FDE5;
 }
-sup a, p a:visited {
-    color: #736473;
+a:visited {
+    color: #7A7E6A;
 }
 h3, p {
     font-size: 1em;
