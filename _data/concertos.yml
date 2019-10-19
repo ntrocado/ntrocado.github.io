@@ -323,23 +323,29 @@
   cidade: Porto
   membros: Nuno Trocado (g), Tom Ward (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright)
 
-- datahora: 2019-10-26 18:30:00 +0000
+- datahora: 2019-10-26 18:30:00 +0100
   projecto: Tom Ward + Nuno Trocado duo
   local: BRÅK, <a href="https://waterintobeer.co.uk/">waterintobeer</a>
   cidade: London
   membros: Nuno Trocado, <a href="https://madwort.co.uk/">Tom Ward</a>
 
-- datahora: 2019-10-27 15:30:00 +0000
+- datahora: 2019-10-27 15:30:00 +0100
   projecto: Ward / Trocado / Willberg / Lisle
   local: <a href="http://hundredyearsgallery.co.uk/">Hundred Years Gallery</a>
   cidade: London
   membros: <a href="https://madwort.co.uk/">Tom Ward</a>, Nuno Trocado, <a href="http://www.ottowillberg.com/">Otto Willberg</a>, <a href="http://www.andrewlisle.com/">Andrew Lisle</a>
 
-- datahora: 2019-11-09 22:00:00 +0000
-  projecto: Trio with João Guimarães and Diogo Dinis
-  local: <a href="http://quintadocaminho.com">Quinta do Caminho</a>
-  cidade: Cerdal, Valença
-  membros: João Guimarães (as), Nuno Trocado (g), Diogo Dinis (b)
+- datahora: 2019-11-02 19:00:00 +0000
+  projecto: Liévin Lefebvre Organ Trio
+  local: <a href="https://portajazz.com/">Sala Porta-Jazz</a>
+  cidade: Porto
+  membros: Liévin Lefebvre (hammond), Nuno Trocado (g), Acácio Salero (d)
+
+- datahora: 2019-11-02 22:00:00 +0000
+  projecto: Liévin Lefebvre Organ Trio
+  local: <a href="https://portajazz.com/">Sala Porta-Jazz</a>
+  cidade: Porto
+  membros: Liévin Lefebvre (hammond), Nuno Trocado (g), Acácio Salero (d)
 
 - datahora: 2019-11-09 22:00:00 +0000
   projecto: Trio with Hugo Ciríaco and Diogo Dinis
@@ -352,3 +358,9 @@
   local: <a href="http://quintadocaminho.com">Quinta do Caminho</a>
   cidade: Cerdal, Valença
   membros: <a href="http://www.josepedrocoelho.com/">José Pedro Coelho</a> (ts), Nuno Trocado (g), Diogo Dinis (b)
+
+- datahora: 2019-11-23 21:30:00 +0000
+  projecto: Cotovelo
+  local: Teatro de Bolso do TEUC
+  cidade: Coimbra
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright)
