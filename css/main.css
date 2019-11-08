@@ -59,7 +59,7 @@ a.titulo {
 	color: #F8F8F8;
 	text-decoration: none;
 }
-a {
+sup a, p a, li a {
     text-decoration: underline;
     color: #F8FDE5;
 }
