@@ -130,6 +130,9 @@ p.footpara {
 #footer ul {
     float: right;
 }
+#footer li {
+    padding: .2em;
+}
 img {
     max-width: 100%;
     height: auto;
