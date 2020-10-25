@@ -45,7 +45,7 @@ h2 {
     background-color: #343530;
     text-align: center;
 }
-h2 a, h3 a {
+h2.post-title a, h3 a {
     text-decoration: none;
     color: #F8FDE5;
 }
@@ -80,7 +80,7 @@ h4 {
     text-align: right;
     margin-top: -0.9em;
     margin-bottom: -0.9em;
-}   
+}
 div.outline-2 h2, h2.footnotes {
     background-color: #0E0D0E;
     color: #7A7E6A;
@@ -92,7 +92,9 @@ sup a.footref {
 p.footpara {
     font-size: 0.8em;
 }
-    
+li.post {
+    margin-bottom: 2.5em;
+}
 .cssmenu ul {
     margin-bottom: 0.5em;
     padding: 0;
