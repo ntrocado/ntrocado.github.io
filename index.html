@@ -8,7 +8,7 @@ description: The website of guitarist and composer Nuno Trocado.
 
 <h2>News</h2>
 <ul>
-  {% for news_item in site.news %}
+  {% for news_item in site.news reversed %}
     <li id="concertos">
       <strong>{{news_item.date  | date: "%Y-%m-%d"}}</strong> {{news_item.content}}
     </li>
