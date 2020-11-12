@@ -407,9 +407,9 @@
   cidade: Ponte de Lima
   membros: João Martins (d), Fábio Almeida (saxes), Gabriel Neves (saxes), Nuno Trocado (g)
 
-- datahora: 2020-11-23 21:30:00 +0100
+- datahora: 2020-11-23 21:00:00 +0000
   projecto: João Martins "Hundred Milliseconds" 
-  local: Auditório da Faculdade de Engenharia da Universidade do Porto
+  local: <a href="https://portajazz.com/">Porta-Jazz</a>
   cidade: Porto
   membros: João Martins (d), Fábio Almeida (saxes), Gabriel Neves (saxes), Nuno Trocado (g)
 
@@ -418,6 +418,18 @@
   local: <a href="https://tagv.pt/">Teatro Académico de Gil Vicente</a>
   cidade: Coimbra
   membros: <a href="https://vimeo.com/user2093766">Dária Salgado (visual art)</a>, <a href="http://www.xn--srgiotavares-beb.com/">Sérgio Tavares</a> (b, elec), Nuno Trocado (g, elec)
+
+- datahora: 2020-12-05 20:00:00 +0100
+  projecto: AMR & Porta-Jazz Quarteto
+  local: <a href="https://www.amr-geneve.ch/performance?id=4301">AMR Sud des Alpes</a>
+  cidade: Genève, CH
+  membros: João Mortágua (as), Aina Rakotobe (bs), Nuno Trocado (g), Marco de Freitas (b)
+
+- datahora: 2021-04-14 21:30:00 +0100
+  projecto: João Martins "Hundred Milliseconds" 
+  local: Festival de Jazz de Ovar
+  cidade: Ovar
+  membros: João Martins (d), Fábio Almeida (saxes), Gabriel Neves (saxes), Nuno Trocado (g)
 
 # - datahora: 2020-03-28 16:30:00 +0000
 #   projecto: La Passion de Jeanne d'Arc
