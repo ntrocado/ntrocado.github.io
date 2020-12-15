@@ -51,6 +51,10 @@ h2 {
     background-color: #343530;
     text-align: center;
 }
+h2.post-title {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
 h2.post-title a, h3 a {
     text-decoration: none;
     color: #F8FDE5;
@@ -87,9 +91,15 @@ h4 {
     margin-top: -0.9em;
     margin-bottom: -0.9em;
 }
+code {
+    background-color: #7A7E6A;
+    color: white;
+    padding: 0.1em;
+    font-size: 1.2em;
+}
 div.outline-2 h2, h2.footnotes {
     background-color: #0E0D0E;
-    color: #7A7E6A;
+    color: #F8FDE5;
     text-align: left;
 }
 sup a.footref {
