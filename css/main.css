@@ -34,6 +34,12 @@ ul {
     padding: 0px;
     margin: 0px;
 }
+ul.org-ul {
+    list-style-type: circle;
+}
+ul.org-ul li {
+    margin-bottom: .5em;
+}
 h1, h3, h4, p, li {
     color: #F8F8F8;
     font-family: quicksandregular;
@@ -67,7 +73,7 @@ sup a, p a, li a {
 a:visited {
     color: #7A7E6A;
 }
-h3, p {
+h3, p, li {
     font-size: 1em;
     line-height: 1.3em;
 }
@@ -179,4 +185,64 @@ hr {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+form {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    box-sizing: border-box;
+}
+
+label,
+button, 
+input, 
+select, 
+textarea {  
+    font-family: quicksandregular; 
+    font-size: 100%; 
+    box-sizing: border-box; 
+    padding: 0;
+    margin: 0; 
+}
+input[type=text] {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 1em;
+    border: 3px solid;
+    outline: none;
+}
+input[type=text]:focus {
+    background: #ECECEC;
+}
+input:valid {
+    border-color: #add091;
+}
+input:invalid {
+    border-color: #d47e7e;
+}
+select {
+    padding: 0.25em;
+    margin-left: 0.5em;
+    margin-top: 0.05em;
+    border: none;
+    outline: none;
+}
+select:focus {
+    background: #ECECEC;
+}
+input[type=submit] {
+    float: right;
+    padding: 0.35em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-weight: bolder;
+    border: none;
+}
+input[type=submit]:hover,
+input[type=submit]:focus {
+    outline     : none;
+    background  : #736473;
+    color       : #F8F8F8;
+    cursor: pointer;
 }

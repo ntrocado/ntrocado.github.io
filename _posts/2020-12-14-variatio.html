@@ -1,0 +1,86 @@
+---
+layout: post
+title: "Automatic variations"
+categories: software
+---
+
+<div>
+<form action="http://variatio.nunotrocado.com" method="get">
+  <label for="input">Input phrase:</label>
+  <input type="text" name="input" id="input" required size="60"
+	 pattern="^(([cdefgabr]{1})(ss|s\+|s|\+|-|b|b-|bb)?('+|,+)?(\d*\.?\d*)?(\s|$)){1,13}$">
+  <label for="complexity">Complexity:</label>
+  <select name="complexity" id="complexity">
+    <option value="2">Simple</option>
+    <option value="3">Medium</option>
+    <option value="4">Bring 'em on</option>
+    <option value="5">Nightmare</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+</div>
+
+<div id="outline-container-org1435b1c" class="outline-2">
+<h2 id="org1435b1c">Generate a pdf with melodic variations on a theme</h2>
+<div class="outline-text-2" id="text-org1435b1c">
+<p>
+Enter a short musical phrase in the input box above, choose the complexity level, push the button and wait (it might take a few seconds). You'll get an automatically generated pdf with a bunch of melodic variations on the original phrase. This can be useful to discover new ideas for composing and improvising, overcome the blank page syndrome, practice reading, etc.
+</p>
+
+<p>
+To input the theme, use the following syntax:
+</p>
+<ul class="org-ul">
+<li>Notes are separated by spaces.</li>
+<li>Each note starts with a pitch letter ("a"-"g"), or "r" for a rest.</li>
+<li>Add "s" for sharp, "b" for flat (eg, "cs" is C-sharp, "bb" is B-flat).</li>
+<li>Add one or more quotes (') to indicate octaves above middle C, commas (,) indicate octaves below middle C. For example: "c'" is the C above middle C (C5, as it is also usually called); "ab,," is the A-flat two octaves below middle C (A3).</li>
+<li>Add the rhythmic value in number of beats. Examples: "c1" is a quarter-note C; "d.5" is an eighth-note D (.5=half a beat); "e1.75" is a double-dotted quarter-note E, or a quarter-note tied to a dotted eight-note&#x2026; (the exact notation is set by the computer); "fs4" is a whole-note F-sharp.</li>
+<li>One more thing about octaves: all the octaves are relative to the first note. If you type "g,,1 a1 b1 c,1", the first three notes are two octaves below middle-C, and the last one one octave below (G3 A3 B3 C4).</li>
+<li>One more thing about rhythms: If you don't indicate a rhythmic value, the preceding one is assumed. So you could write the last example like this: "g,,1 a b c'".</li>
+</ul>
+
+<p>
+Some more examples of valid phrases:
+</p>
+<ul class="org-ul">
+<li>f1 r.5 f'1 d'.5 e'1 (Moose The Mooche)</li>
+<li>r.5 g g g eb2 r.5 f f f d2 (Beethoven's fifth)</li>
+<li>d2 a f d cs d1 e f2.5 g.5 f e d1 (Bach's Art of the Fugue)</li>
+<li>cs'.5 e gs b as1.5 gs.5 fs ds b,1 (Coltrane's solo on Giant Steps)</li>
+<li>d.5 e f g e1 c.5 d1.5 (The Lick)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6bf895a" class="outline-2">
+<h2 id="org6bf895a">Limitations (for now&#x2026;)</h2>
+<div class="outline-text-2" id="text-org6bf895a">
+<ul class="org-ul">
+<li>Everything is in 4/4.</li>
+<li>No tuplets.</li>
+<li>Everything is in treble clef.</li>
+<li>No key signatures.</li>
+<li>The spelling of pitches and the notation of rhythms are not very rigorous&#x2026; These are not trivial problems, and I've put significant work on the respective algorithms, but there's definitively room for improvement.</li>
+<li>Maximum 13 notes in the input phrase.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f44059" class="outline-2">
+<h2 id="org2f44059">Coming up&#x2026;</h2>
+<div class="outline-text-2" id="text-org2f44059">
+<p>
+After dealing with all above: more algorithms, fine-tuning parameters, midi file download.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org14fbd15" class="outline-2">
+<h2 id="org14fbd15">Bugs, suggestions</h2>
+<div class="outline-text-2" id="text-org14fbd15">
+<p>
+Contact me or head to the <a href="https://github.com/ntrocado/variatio/issues">issue tracker</a>. Also, I'd love to know how you use this and whether it finds a place in your next <i>magnus opus</i>.
+</p>
+</div>
+</div>
