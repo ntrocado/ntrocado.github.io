@@ -9,14 +9,17 @@ categories: software
   <label for="input">Input phrase:</label>
   <input type="text" name="input" id="input" required size="60"
 	 pattern="^(([cdefgabr]{1})(ss|s\+|s|\+|-|b|b-|bb)?('+|,+)?(\d*\.?\d*)?(\s|$)){1,13}$">
+
   <label for="complexity">Complexity:</label>
-  <select name="complexity" id="complexity">
-    <option value="2">Simple</option>
-    <option value="3">Medium</option>
-    <option value="4">Bring 'em on</option>
-    <option value="5">Nightmare</option>
-  </select>
-  <input type="submit" value="Submit">
+  <div class="button-box">
+    <select name="complexity" id="complexity">
+      <option value="2">Simple</option>
+      <option value="3">Medium</option>
+      <option value="4">Bring 'em on</option>
+      <option value="5">Nightmare</option>
+    </select>
+    <input type="submit" value="Submit">
+  </div>
 </form>
 </div>
 

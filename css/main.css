@@ -233,21 +233,22 @@ input:invalid {
 }
 select {
     padding: 0.25em;
-    margin-left: 0.5em;
-    margin-top: 0.05em;
+    margin-right: 0.5em;
+    margin-top: 0.25em;
     border: none;
     outline: none;
+    display: block;
+    float: left;
 }
 select:focus {
     background: #ECECEC;
 }
 input[type=submit] {
-    float: right;
-    padding: 0.35em;
     padding-left: 1em;
     padding-right: 1em;
     font-weight: bolder;
     border: none;
+    margin-left: auto;
 }
 input[type=submit]:hover,
 input[type=submit]:focus {
@@ -255,4 +256,7 @@ input[type=submit]:focus {
     background  : #736473;
     color       : #F8F8F8;
     cursor: pointer;
+}
+.button-box {
+    display: flex;
 }
