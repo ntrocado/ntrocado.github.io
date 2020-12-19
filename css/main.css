@@ -91,6 +91,12 @@ h4 {
     margin-top: -0.9em;
     margin-bottom: -0.9em;
 }
+.rss {
+    margin-bottom: 1.1em
+}
+.rss a {
+    text-decoration: none;
+}
 code {
     background-color: #7A7E6A;
     color: white;
