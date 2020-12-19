@@ -2,6 +2,9 @@ name: Nuno Trocado
 markdown: kramdown
 encoding: utf-8
 permalink: none
+url: https://nunotrocado.com
+author: Nuno Trocado
+description: The website of Nuno Trocado
 
 collections:
   - news

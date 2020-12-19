@@ -7,12 +7,13 @@ description: The website of guitarist and composer Nuno Trocado.
 <img src="/images/front.jpg" />
 
 <h2>News</h2>
+<a href="feed/news.xml"><h4>[rss]</h4></a>
 <ul>
   {% for news_item in site.news reversed %}
     <li id="concertos">
       <strong>{{news_item.date  | date: "%Y-%m-%d"}}</strong> {{news_item.content}}
     </li>
-  {% endfor %}
+    {% endfor %}
 </ul>
 <!--
 <h3>Próximos concertos:</h3>
