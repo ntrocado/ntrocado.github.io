@@ -1,0 +1,622 @@
+---
+layout: post
+title: "Make Music with SuperCollider and Lisp (Part I)"
+categories: software
+---
+
+<div id="outline-container-org0792d8e" class="outline-2">
+<h2 id="org0792d8e">SuperCollider and Common Lisp</h2>
+<div class="outline-text-2" id="text-org0792d8e">
+<p>
+<a href="https://supercollider.github.io/">SuperCollider</a> is a platform for audio synthesis and algorithmic composition. It has three major components:
+</p>
+<dl class="org-dl">
+<dt>scsynth</dt><dd>the audio server, which produces sound according to the commands that we send it;</dd>
+<dt>sclang</dt><dd>a programming language, including abstractions to control the server and for common tasks in the domain of music;</dd>
+<dt>scide</dt><dd>an environment for editing sclang programs, accessing documentation and using graphical tools.</dd>
+</dl>
+
+<p>
+The <a href="http://doc.sccode.org/Guides/ClientVsServer.html">client/server architecture</a> is a main feature of SuperCollider. Among other advantages, it allows us to control the server using a client and programming language other than sclang. This is what we'll explore in this tutorial.
+</p>
+
+<p>
+Of the three major components provided by SuperCollider, we'll keep the audio server (scsynth), but we'll replace the other two with our own tools. Instead of sclang, we'll use <a href="https://lisp-lang.org/">Common Lisp</a> together with <a href="https://github.com/byulparan/cl-collider">cl-collider</a>, a Lisp library that helps us communicate with the audio server, using the <a href="https://en.wikipedia.org/wiki/Open_Sound_Control">Open Sound Control (OSC)</a> protocol. The development environment is more of a personal preference, but see below for recommendations.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7cec4fb" class="outline-2">
+<h2 id="org7cec4fb">Prerequisites</h2>
+<div class="outline-text-2" id="text-org7cec4fb">
+<p>
+It is assumed that you know at least some basic Common Lisp. Fortunately, there's a range of resources available to <a href="https://github.com/CodyReichert/awesome-cl#learning-and-tutorials">learn Lisp</a> if you're just starting out. Musicans experienced with <a href="https://github.com/CodyReichert/awesome-cl#audio">Lisp-based musical systems</a> enjoy a headstart.
+</p>
+
+<p>
+It is also assumed that you have some notions of how digital audio works.
+</p>
+
+<p>
+You don't need to know anything about SuperCollider. Later on you may find it's useful to grasp some sclang basics. This will allow you to better understand the example code that accompanies the <a href="http://doc.sccode.org/Help.html">documentation</a>, follow tutorials, check out other people's projects, etc.
+</p>
+
+<p>
+I find it very instructive to take SuperCollider resources, like books and online tutorials, and translate the demonstration code into Common Lisp. I've been keeping these undertakings in a <a href="https://github.com/ntrocado/cl-collider-examples">github repository of cl-collider examples</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged546ea" class="outline-2">
+<h2 id="orged546ea">Setup</h2>
+<div class="outline-text-2" id="text-orged546ea">
+<p>
+Download and install <a href="https://supercollider.github.io/download">the latest SuperCollider release</a> for your system.
+</p>
+
+<p>
+In the Lisp side of things, you'll need an implementation (I recommend <a href="http://www.sbcl.org/">SBCL</a>), an editor (a classic choice is <a href="https://www.gnu.org/software/emacs/">Emacs</a> with either <a href="https://common-lisp.net/project/slime/">Slime</a> or <a href="https://github.com/joaotavora/sly">Sly</a>, along with other packages to help write Lisp code), and <a href="https://www.quicklisp.org/beta/">Quicklisp</a>. If you don't have all this up and running already, just install <a href="https://portacle.github.io/">Portacle</a> and be done with it—Portacle has everything configured and ready to go.
+</p>
+
+<p>
+Now load the cl-collider library:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(ql:quickload <span class="org-string">"cl-collider"</span>)
+(<span class="org-keyword">in-package</span> <span class="org-builtin">:sc-user</span>)
+</pre>
+</div>
+
+<p>
+Check if the variables <code>*sc-synth-program*</code>, <code>*sc-plugin-paths*</code>, and <code>*sc-synthdefs-path*</code> are set to the correct paths for your SuperCollider installation, and <code>setf</code> them if they aren't.
+</p>
+
+<p>
+According to a SuperCollider naming tradition, we'll use <code>*s*</code> to store an object representing the audio server, which we want to run on the same machine as the client (<code>localhost</code>), on the arbitrarily selected port number 4444:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(setf *s* (make-external-server <span class="org-string">"localhost"</span> <span class="org-builtin">:port</span> 4444))
+</pre>
+</div>
+
+<p>
+Finally, let's boot the server:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(server-boot *s*)
+</pre>
+</div>
+
+<p>
+This runs scsynth and keeps it in the background, ready to accept OSC messages. It should print some information about your audio interface and drivers, along with other configuration options, and if all goes well we'll be ready to start.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc5751f3" class="outline-2">
+<h2 id="orgc5751f3">Making noise</h2>
+<div class="outline-text-2" id="text-orgc5751f3">
+<p>
+Try:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (white-noise.ar 0.1))
+</pre>
+</div>
+
+<audio controls="controls" id="orgf2307c6">
+<source src="/assets/cl-collider-tutorial/white-noise.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+The way SuperCollider works is by connecting <i>unit generators</i>, also known as <i>UGens</i>. In a simplified description, UGens produce signals, which can be distributed to other UGens, and finally sent over to the audio interface's outputs, so we can hear the result. <a href="https://doc.sccode.org/Classes/WhiteNoise.html">WhiteNoise</a> is one such generator. It produces <a href="https://en.wikipedia.org/wiki/White_noise">white noise</a>: a random signal having equal intensity at all frequencies. In our code, its name appears translated to the naming conventions in Common Lisp: <code>white-noise</code>.
+</p>
+
+<p>
+What about the <code>.ar</code> part? Each UGen can operate at different rates. <code>.ar</code> stands for <i>audio rate</i>, which means that values are calculated often enough for the generation and processing of an audio signal. Most UGens have two versions: the audio rate one, that ends with <code>.ar</code>, and the <i>control rate</i> one, that ends with <code>.kr</code>. Control rate is useful for signals that can be updated less frequently, thus needing less computer processing power. Some UGens also provide a <code>.ir</code> version, which stands for <i>initialization rate</i>, meaning that the output value is calculated only once, when the UGen is created.
+</p>
+
+<p>
+On the <a href="https://doc.sccode.org/Browse.html#UGens">SuperCollider documentation pages</a> we can browse the available UGens and read about their description, inputs, examples, etc. Also on the Lisp side there are docstrings available for each UGen with a simple description.
+</p>
+
+<p>
+<code>white-noise.ar</code> has two optional arguments: <code>mul</code> and <code>add</code>. They multiply and add to the output signal, respectively. Many UGens have these two arguments, which are used for scaling the output. In the example, we multiply the signal by 0.1 to reduce its amplitude and avoid blasting noise through the loudspeakers. The same thing could be achieved, in an arguably clearer way (especially when dealing with UGens with many arguments), by:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (* 0.1 (white-noise.ar)))
+</pre>
+</div>
+
+<p>
+Finally, we use <code>play</code> to prepare and send the appropriate messages to the audio server. <code>play</code> returns a <i>node</i> object:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">#&lt;CL-COLLIDER::NODE <span class="org-builtin">:server</span> #&lt;CL-COLLIDER::EXTERNAL-SERVER localhost-127.0.0.1:4444&gt; <span class="org-builtin">:id</span> 1000 <span class="org-builtin">:name</span> <span class="org-string">"temp-synth"</span>&gt;
+</pre>
+</div>
+
+<p>
+SuperCollider structures synthesis processes in a directed graph, in which we just created a new node. Note that an unique number <code>id</code> was automatically created—1000—as well as the name <code>"temp-synth"</code>.
+</p>
+
+<p>
+We can call <code>(server-query-all-nodes)</code> to get a tree representation of all the active nodes.
+</p>
+
+<p>
+To remove the synthesis process from the server and stop the sound we call <code>free</code> with either the node object or its <code>id</code>. It's often practical to store the node in a variable when using <code>play</code>, which makes it easier to free it later. Like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span class="org-keyword">defparameter</span> <span class="org-variable-name">*white-noise*</span> (play (white-noise.ar 0.1)))
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">Later:</span>
+(free *white-noise*)
+</pre>
+</div>
+
+<p>
+Another way of stopping things is with the appropriately named <code>(stop)</code>. This immediately frees all the nodes in the default group (nodes can be organized into groups, but this is a more advanced topic).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0f09e6" class="outline-2">
+<h2 id="orgb0f09e6">Making pitches</h2>
+<div class="outline-text-2" id="text-orgb0f09e6">
+<p>
+Let's use a <a href="https://digital-audio.fandom.com/wiki/Sine_Wave">sinusoidal oscillator</a> to make a pitched sound:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (sin-osc.ar 220 0.0 0.1))
+</pre>
+</div>
+
+<audio controls="controls" id="org432add8">
+<source src="/assets/cl-collider-tutorial/220hz-sine.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+The arguments to <code>sin-osc.ar</code> are the frequency (220), the phase (0.0), and like before <code>mul</code> (0.1) and <code>add</code> (not used, the default is 0). They are all optional arguments.
+</p>
+
+<p>
+An UGen can be routed to modulate the input of another UGen:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (sin-osc.ar (sin-osc.kr 1 0.0 110 330) 0.0 0.1))
+</pre>
+</div>
+
+<audio controls="controls" id="org12e7dd9">
+<source src="/assets/cl-collider-tutorial/mod-sine.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+The output of <code>sin-osc</code> oscillates between -1.0 and +1.0. We take the control rate version of it (ends in <code>.kr</code>), and multiply the output by 110, so the limits become -110 and +110. Finally, we add 330 to get +220 and +440. This is fed into another <code>sin-osc</code>, now in audio rate (ends in <code>.ar</code>), to produce an audible signal that oscillates between 220 Hz and 440 Hz.
+</p>
+
+<p>
+If we already know what the minimum and maximum values will be, we can avoid the arithmetic by using <code>range</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (sin-osc.ar (range (sin-osc.kr 1) 220 440) 0.0 0.1))
+</pre>
+</div>
+
+<p>
+It's possible to create complex textures just by nesting modulators. The following example only uses instances of <code>sin-osc</code> and <code>lf-pulse</code>, a pulse oscillator.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (sin-osc.ar (+ (lf-pulse.kr (lf-pulse.kr 0.5 0.5 0.8 1.5 0.5)
+                                  0.0
+                                  (range (sin-osc.kr 0.15) 0.10 0.45)
+                                  (range (sin-osc.kr 0.2) 330 660))
+                     (lf-pulse.kr (lf-pulse.kr 0.25 0.0 0.2 2.5 1)
+                                  0.0
+                                  (range (sin-osc.kr 0.25) 0.15 0.35)
+                                  (range (sin-osc.kr 0.1) 110 770))))
+      <span class="org-builtin">:gain</span> 0.2)
+</pre>
+</div>
+
+<audio controls="controls" id="orgddcf738">
+<source src="/assets/cl-collider-tutorial/nesting-mods.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+This also shows how we can <i>add</i> two control signals. Try playing with the values—little changes yield a lot of variation. Also note that we use yet another way of adjusting the output volume, with <code>play</code>'s keyword <code>gain</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd549ed7" class="outline-2">
+<h2 id="orgd549ed7">Multichannel audio and expansion</h2>
+<div class="outline-text-2" id="text-orgd549ed7">
+<p>
+So far everything we've done is in mono and comes out on the left speaker only (assuming a stereo monitoring system). SuperCollider offers a number of UGens to deal with multichannel audio. One of the simplest ones is <code>pan2</code>, a two channel equal power panner.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (pan2.ar (ringz.ar (white-noise.ar 0.1)
+                         (range (lf-pulse.kr 2 0.0 0.1)
+                                300 1300)
+                         0.5)
+               (lf-tri.kr 0.05 3.0)
+               0.1))
+</pre>
+</div>
+
+<audio controls="controls" id="org9762699">
+<source src="/assets/cl-collider-tutorial/panned-ping.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+In this example, white noise is passed through a resonant filter (<code>ringz</code>), whose center frequency is modulated with a low frequency pulse oscillator, alternating between 300 Hz and 1300 Hz. The resulting signal is fed into <code>pan2</code>, as its first argument. 
+</p>
+
+<p>
+The second argument is the pan position, which ranges between -1 (left) and +1 (right). A triangular oscillator (<code>lf-tri</code>) with a low frequency of 0.05 Hz provides the constantly moving positions—its output also ranges between -1 and +1. A phase offset is also provided, to make the oscillator start at the lowest value. Phase offset is defined as a value ranging from 0 to 4. The correct value for the intended effect is 3.0. This way, we hear the sound coming from the left speaker first, then slowly moving to the right, and back again indefinitely.
+</p>
+
+<p>
+Finally, <code>pan2</code>'s third argument (0.1) is the final output level—yet another way of setting the volume.
+</p>
+
+<p>
+An important, powerful and sometimes confusing concept is <i>multichannel expansion</i>. Simply put, when a <i>list</i> is given as an input to a UGen, it causes multiple copies of that UGen to be created, each using a different value from the input list. Let's take the first example in this section, but with two frequencies for the oscillator, 660 and 770, instead of a single one:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(play (sin-osc.ar '(660 770) 0.0 0.1))
+</pre>
+</div>
+
+<audio controls="controls" id="org2698b64">
+<source src="/assets/cl-collider-tutorial/stereo-sines.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+Two tones come out, one on the left and the other one on the right channel.
+</p>
+
+<p>
+With a list of more than two values, the resulting UGens will be sequentially assigned to the next output channels on the audio device. If there are only two available, the expansion won't be heard beyond this limit. We can, however, reduce the expansion back to a single channel using <code>mix</code>, like in the following eight-note chord:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(play (mix (sin-osc.ar (mapcar #'midicps
+                               '(60 64 67 71 78 81 85 87.5))
+                       0.0 0.05)))
+</pre>
+</div>
+
+<audio controls="controls" id="org4dfc0ed">
+<source src="/assets/cl-collider-tutorial/8note-chord.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+Here, instead of entering the frequency values directly, we use <code>midicps</code> to convert midi note values (60 is C4) to frequencies.
+</p>
+
+<p>
+A practical way of spreading a multichannel signal across the stereo field is with <code>splay</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(play (splay.ar (<span class="org-keyword">loop</span> <span class="org-builtin">:for</span> i <span class="org-builtin">:from</span> 1 <span class="org-builtin">:upto</span> 3
+                      <span class="org-builtin">:collect</span> (* (sin-osc.ar (* 220 i 1.6) 0)
+                                  (lf-pulse.kr (+ (/ i 3) (sin i))
+                                               3 0.1 0.2)))))
+</pre>
+</div>
+
+<audio controls="controls" id="org885683e">
+<source src="/assets/cl-collider-tutorial/splay-pings.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+The first tone, with the lowest frequency, plays on the left side, the second on the center, and the third and highest-pitched one on the right side.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org778b42a" class="outline-2">
+<h2 id="org778b42a">Defining and controlling synths</h2>
+<div class="outline-text-2" id="text-org778b42a">
+<p>
+So far we've been using <code>play</code> to make sounds. Another more involved and flexible way of working is by first defining audio processes with <code>defsynth</code>. Then they'll silently live on the server until instantiated by <code>synth</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defsynth tone ((freq 440) (amp 0.2))
+  (out.ar 0 (saw.ar freq amp)))
+</pre>
+</div>
+
+<p>
+In the example above, we define a synth named <code>tone</code>, and give it two parameters, <code>amp</code> and <code>freq</code>, each with a default value (respectively 1 and 440).
+</p>
+
+<p>
+Next comes a body of expressions. If we want to hear the sounds that our synth will produce, and unlike previously, now we have to use a new UGen, <code>out</code>, to send the signal to an output bus. Buses will dealt with later, but for now it suffices to note that SuperCollider reserves the bus indexes starting with 0 to the hardware output channels. Our left channel is 0, and the right channel is 1. The first argument to <code>out.ar</code> is the index of the bus that we want to write to—in this case it's 0, the left channel.
+</p>
+
+<p>
+Finally the signal chain has only one UGen, <code>saw.ar</code>, a sawtooth wave generator, called with the parameters that we defined before.
+</p>
+
+<p>
+The above code, however, won't play any sound. Upon evaluating the synth definition, it will be constructed on the server, and silently live there until instantiated. To do so, we need:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(synth 'tone)
+</pre>
+</div>
+
+<audio controls="controls" id="org9d8c4ad">
+<source src="/assets/cl-collider-tutorial/440hz-saw.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+When we have enough:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(stop)
+</pre>
+</div>
+
+<p>
+We can also store the resulting node on a variable, <code>*tone*</code>, and <code>free</code> it later. Also, we can provide values for the synth's parameters, like so:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span class="org-keyword">defparameter</span> <span class="org-variable-name">*tone*</span>
+  (synth 'tone
+         <span class="org-builtin">:freq</span> (midicps 42)
+         <span class="org-builtin">:amp</span> 0.3))
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">When we have enough:</span>
+(free *tone*)
+</pre>
+</div>
+
+<audio controls="controls" id="orgaa7e443">
+<source src="/assets/cl-collider-tutorial/fs2-saw.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+Beyond freeing, this also allows us to change the synth's parameters while it's playing, through <code>ctrl</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(ctrl *tone* <span class="org-builtin">:freq</span> (midicps 48))
+</pre>
+</div>
+
+<audio controls="controls" id="orgf7726eb">
+<source src="/assets/cl-collider-tutorial/saw-note-change.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+Note that what <code>play</code> was doing behind the scenes was essentially defining a temporary synth and running it.
+</p>
+
+<p>
+If the signal chain consists of multiple channels, the bus index provided to <code>out.ar</code> is the first one, and the others are mapped to successive indexes. The next version of our synth plays slightly detuned sawtooth waves in the left and right channels.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defsynth tone ((freq 440) (amp 0.2))
+  (out.ar 0 (saw.ar (<span class="org-keyword">let</span> ((detune (* freq 0.01)))
+                      (list (- freq detune) (+ freq detune)))
+                    (/ amp 2))))
+
+(<span class="org-keyword">let</span> ((node (synth 'tone)))
+  (sleep 2)
+  (free node))
+</pre>
+</div>
+
+<audio controls="controls" id="org63a109a">
+<source src="/assets/cl-collider-tutorial/2s-tone.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+In the above code, we used <code>sleep</code> and then <code>free</code> to stop the synth automatically after two seconds. But there must be a better way, and of course there is one—/envelopes/.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defsynth tone ((freq 440) (amp 0.2))
+  (out.ar 0 (* (saw.ar (<span class="org-keyword">let</span> ((detune (* freq 0.01)))
+                         (list (- freq detune) (+ freq detune))))
+               (env-gen.kr (perc 0.1 1.8)
+                           <span class="org-builtin">:level-scale</span> amp
+                           <span class="org-builtin">:act</span> <span class="org-builtin">:free</span>))))
+
+(synth 'tone)
+</pre>
+</div>
+
+<audio controls="controls" id="orge6de6a1">
+<source src="/assets/cl-collider-tutorial/tone-env.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+In the example above, a sawtooth generator (<code>saw</code>) produces the audible sound, which is multiplied by the envelope generator <code>env-gen</code>, in order to dynamically control its amplitude. The first argument of <code>env-gen</code> defines the envelope itself. For convenience, some frequently used envelope shapes are already predefined, among them <code>perc</code> (for "percussive"), here called with an attack time of 0.1 seconds and a release time of 1.8 seconds.
+</p>
+
+<p>
+Since we have an amplitude envelope, it's seems appropriate that <code>amp</code> is moved to its keyword argument <code>level-scale</code>.
+</p>
+
+<p>
+The final keyword argument, <code>act</code>, controls what happens when the envelope is finished playing. In this case, it will <code>free</code> the synth automatically. If we hadn't done this, and even though the synth is now silent, because the envelope ran its course completely, the corresponding node would still be kept on the server. But we don't want to waste the server's resources, and therefore it's a good practice to free what we don't plan to keep using.
+</p>
+
+<p>
+Now let's look at a more involved example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(defsynth tone ((freq 440) (amp 0.2) (gate 1))
+  (out.ar 0
+          (* (rlpf.ar (+ (saw.ar (<span class="org-keyword">let</span> ((detune (* freq 0.01)))
+                                   (list (- freq detune)
+                                         (+ freq detune))))
+                         (* (brown-noise.ar)
+                            (env-gen.kr (asr 1.5 0.175 0)
+                                        <span class="org-builtin">:gate</span> gate)))
+                      (env-gen.kr (env '(80 2400 200 2400)
+                                       '(0.05 0.2 5))))
+             (env-gen.kr (adsr 0.05 0.4 0.4 1.2)
+                         <span class="org-builtin">:gate</span> gate
+                         <span class="org-builtin">:level-scale</span> amp
+                         <span class="org-builtin">:act</span> <span class="org-builtin">:free</span>))))
+
+(<span class="org-keyword">defparameter</span> <span class="org-variable-name">*tone*</span>
+  (synth 'tone
+         <span class="org-builtin">:freq</span> (midicps 42)))
+</pre>
+</div>
+
+<audio controls="controls" id="org21454e7">
+<source src="/assets/cl-collider-tutorial/tone-more-envs.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+This shows other envelope recipes. Instead of <code>perc</code>, the volume envelope is now defined with <code>adsr</code>, which follows the standard shape of attack (0.05), decay (0.4), sustain level (0.4), and release (1.2). Since we now have a sustain segment, we also need to tell the envelope when to leave the sustain segment and proceed to the release one. We use <code>gate</code> for that. When <code>gate</code> is 1 (or any value above 0) the envelope starts, and it is held open until <code>gate</code> is set to 0, moving the envelope to the release portion. Also, <code>gate</code> is now a also a synth parameter, with 1 as a default value, so the envelope triggers as soon as the synth is instantiated, but it's possible to later instruct the running synth to change this value to 0.
+</p>
+
+<p>
+Our synth now also has a resonant low pass filter (<code>rlpf</code>), whose frequency is modulated by an envelope. We use <code>env</code> to define the envelope. <code>env</code> is the basic specification for envelopes. First, we give it a list of levels, then a list of times (optionally also a list of curves, not used in the example). So the envelope starts at level 80, takes 0.05 seconds to increase to level 2400, then takes 0.2 seconds to move down to level 200, and finally takes 5 seconds to move back up to 2400, holding the last value indefinitely. 
+</p>
+
+<p>
+There's also a new sound source: a brown noise generator. The amount of noise that gets mixed in with the sawtooth oscillator is controlled with an <code>asr</code> envelope, that has three segments: attack, sustain, and release.
+</p>
+
+<p>
+To trigger the release portion of the envelopes, and ultimately stop the sound, we change the gate to 0:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(ctrl *tone* <span class="org-builtin">:gate</span> 0)
+</pre>
+</div>
+
+<p>
+The next example uses our synth and its gated envelopes together with <code>sleep</code> as a crude way of sequencing notes, in this case a kind of spectral arpeggio. To avoid blocking the main thread while this is playing, we move the synth logic to a function and create a new thread to run it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">rising-arp</span> (<span class="org-type">&amp;optional</span> (start-freq 80) (inharmonicity 0.425))
+  (<span class="org-keyword">loop</span> <span class="org-builtin">:for</span> i <span class="org-builtin">:from</span> 1 <span class="org-builtin">:upto</span> 50
+        <span class="org-builtin">:for</span> mult <span class="org-builtin">:=</span> (<span class="org-keyword">if</span> (zerop (mod i 3))
+                         i
+                         (/ i (- 1 inharmonicity)))
+        <span class="org-builtin">:collect</span> (synth 'tone
+                        <span class="org-builtin">:freq</span> (* mult start-freq inharmonicity)
+                        <span class="org-builtin">:amp</span> (* 0.007 i))
+          <span class="org-builtin">:into</span> nodes
+        <span class="org-builtin">:do</span> (sleep (alexandria:random-elt '(1/6 1/7 1/8 1/9 1/10)))
+        <span class="org-builtin">:finally</span> (mapc (<span class="org-keyword">lambda</span> (node) (ctrl node <span class="org-builtin">:gate</span> 0)) nodes)))
+
+(bt:make-thread
+ #'rising-arp
+ <span class="org-builtin">:name</span> <span class="org-string">"rising-arp"</span>)
+</pre>
+</div>
+
+<audio controls="controls" id="orgbafaae1">
+<source src="/assets/cl-collider-tutorial/spectral-arp.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+</div>
+</div>
+
+<div id="outline-container-org212a302" class="outline-2">
+<h2 id="org212a302">Proxy</h2>
+<div class="outline-text-2" id="text-org212a302">
+<p>
+Yet another way of creating, starting and controlling audio processes is with <code>proxy</code>. Unlike <code>play</code>, where if we evaluate the same code again we create a <i>new</i> node on the server, redefining a <code>proxy</code> replaces (crossfades) the currently running node with a new one. This makes it especially useful for experimenting and building up our sounds, and also for live coding.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(proxy <span class="org-builtin">:fm-hits</span>
+       (<span class="org-keyword">let</span> ((trig (impulse.kr .5)))
+         (apply #'freeverb2.ar
+                (splay.ar
+                 (<span class="org-keyword">loop</span> <span class="org-builtin">:repeat</span> 10
+                       <span class="org-builtin">:collect</span> (* (pm-osc.ar (+ 100 (random 1600))
+                                              (+ 100 (random 700))
+                                              (random 10)
+                                              0 0.3)
+                                   (env-gen.kr (perc 0.01 2)
+                                               <span class="org-builtin">:gate</span> trig))))))
+       <span class="org-builtin">:fade</span> 0.1)
+</pre>
+</div>
+
+<audio controls="controls" id="org8cf6fc3">
+<source src="/assets/cl-collider-tutorial/fm-proxy.mp3" type="audio/mpeg">
+<p>
+Your browser does not support the audio tag.
+</p>
+</audio>
+
+<p>
+When we reevaluate the proxy, new random values are calculated for the synth's parameters and the timbre changes in the time given in <code>:fade</code> (that's what I'm doing in the audio recording).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1063db" class="outline-2">
+<h2 id="orgf1063db">Up next</h2>
+<div class="outline-text-2" id="text-orgf1063db">
+<p>
+We've already covered a good deal of introductory information to get going with cl-collider. But many topics are left. On the next installments we'll see: buses and routing, sampling and audio manipulation, scheduling and more sophisticated ways of sequencing events, setting up OSC responders for bidirectional communication between client and server and for interfacing with external devices, some useful Emacs configuration options, and more.
+</p>
+</div>
+</div>

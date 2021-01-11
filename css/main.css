@@ -40,13 +40,12 @@ ul.org-ul {
 ul.org-ul li {
     margin-bottom: .5em;
 }
-h1, h3, h4, p, li {
+h1, h2, h3, h4, p, li, dl {
     color: #F8F8F8;
     font-family: quicksandregular;
 }
 h2 {
     color: #F8FDE5;
-    font-family: quicksandregular;
     font-size: 1.3em;
     background-color: #343530;
     text-align: center;
@@ -77,9 +76,12 @@ sup a, p a, li a {
 a:visited {
     color: #7A7E6A;
 }
-h3, p, li {
+h3, p, li, dl {
     font-size: 1em;
     line-height: 1.3em;
+}
+dt {
+    font-weight: bold;
 }
 h3 {
 	margin-top: 0.5em;
@@ -97,11 +99,12 @@ h4 {
 .rss a {
     text-decoration: none;
 }
-code {
-    background-color: #7A7E6A;
+code, pre.src {
+    background-color: #343530;
     color: white;
     padding: 0.1em;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    overflow: auto;
 }
 div.outline-2 h2, h2.footnotes {
     background-color: #0E0D0E;
