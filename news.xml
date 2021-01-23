@@ -22,6 +22,7 @@
           <description>{{ news.content | xml_escape }}</description>
         {% endif %}
         <pubDate>{{ news.date | date_to_rfc822 }}</pubDate>
+         <guid isPermaLink="false">{{ news.id }}</guid>
         <link>{{ site.url }}</link>
       </item>
     {% endfor %}
