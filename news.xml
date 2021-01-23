@@ -2,29 +2,28 @@
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"
-	xmlns:atom="http://www.w3.org/2005/Atom"
-	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
->
-	<channel>
-		<title>{{ site.name | xml_escape }} - News</title>
-		<description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-		<sy:updatePeriod>{{ site.feed_update_period | default: "daily" | xml_escape }}</sy:updatePeriod>
-		<sy:updateFrequency>{{ site.feed_update_frequency | default: 1 | xml_escape }}</sy:updateFrequency>
-		<link>{{ site.url }}</link>
-		<atom:link href="{{ site.url }}/{{ page.path }}" rel="self" type="application/rss+xml" />
-		<lastBuildDate>{% for news in site.news limit:1 %} {{ news.date | date_to_rfc822 }} {% endfor %}</lastBuildDate>
-		{% assign feed_items = site.feed_items | default: 20 %}
-		{% for news in site.news limit:feed_items %}
-			<item>
-				<title>{{ news.title | xml_escape }}</title>
-				{% if news.excerpt %}
-					<description>{{ news.excerpt | xml_escape }}</description>
-				{% else %}
-					<description>{{ news.content | xml_escape }}</description>
-				{% endif %}
-				<pubDate>{{ news.date | date_to_rfc822 }}</pubDate>
-				<link>{{ site.url }}</link>
-			</item>
-		{% endfor %}
-	</channel>
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:sy="http://purl.org/rss/1.0/modules/syndication/">
+  <channel>
+    <title>{{ site.name | xml_escape }} - News</title>
+    <description>{% if site.description %} {{site.description | xml_escape }} {% endif %}</description> 
+    <sy:updatePeriod>{{ site.feed_update_period | default: "daily" | xml_escape }}</sy:updatePeriod> 
+    <sy:updateFrequency>{{ site.feed_update_frequency | default: 1 | xml_escape }}</sy:updateFrequency> 
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ site.url }}/{{ page.path }}" rel="self" type="application/rss+xml" />
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    {% assign feed_items = site.feed_items | default: 20 %} 
+    {% for news in site.news limit:feed_items %}
+      <item>
+        <title>{{ news.title | xml_escape }}</title>
+        {% if news.excerpt %}
+          <description>{{ news.excerpt | xml_escape }}</description>
+        {% else %}
+          <description>{{ news.content | xml_escape }}</description>
+        {% endif %}
+        <pubDate>{{ news.date | date_to_rfc822 }}</pubDate>
+        <link>{{ site.url }}</link>
+      </item>
+    {% endfor %}
+  </channel>
 </rss>
