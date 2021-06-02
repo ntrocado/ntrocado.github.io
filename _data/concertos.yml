@@ -425,9 +425,15 @@
   cidade: Porto
   membros: Nuno Trocado (g), Gonçalo Sarmento (b)
 
-- datahora: 2021-06-11 21:30:00 +0100
+- datahora: 2021-05-29 17:00:00 +0100
+  projecto: RMC 2021 Nova Música para Novos Músicos II
+  local: GrETUA
+  cidade: Aveiro
+  membros: Inês Paulino plays <em>Fio Condutor, for alto recorder and electronics</em>, a composition by Nuno Trocado. Also on the program are works by José Carlos Sousa, Tiago Cutileiro, Luís Neto da Costa, Ruben Borges, Jorge Ramos, Nádia Carvalho, Carlos Caires, Cláudio de Pina e Pedro Berardinelli.
+
+- datahora: 2021-06-11 21:00:00 +0100
   projecto: João Martins "Hundred Milliseconds" 
-  local: TBA
+  local: Largo Visconde de Mozelos
   cidade: Paredes de Coura
   membros: João Martins (d), Fábio Almeida (saxes), Gabriel Neves (saxes), Nuno Trocado (g)
 
@@ -443,12 +449,42 @@
   cidade: Valença
   membros: Diogo Dinis (b), João Mortágua (as), Nuno Trocado (g), Demian Cabaud (b), Pedro Vasconcelos (d)
 
+- datahora: 2021-07-23 21:30:00 +0100
+  projecto: Coreto toca Grilo/Mortágua/Sá Ribeiro/Trocado
+  local: Jardins do Palácio de Cristal
+  cidade: Porto
+  membros: 
+
 - datahora: 2021-07-25 18:00:00 +0100
   projecto: João Martins "Hundred Milliseconds" 
   local: Festival Porta-Jazz - Palácio de Cristal
   cidade: Porto
   membros: João Martins (d), Fábio Almeida (saxes), Gabriel Neves (saxes), Nuno Trocado (g)
 
+- datahora: 2021-07-29 21:00:00 +0100
+  projecto: Umbral
+  local: Capela Nova
+  cidade: Vila Real
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright), Pedro Pires Cabral (field recordings)
+
+- datahora: 2021-07-31 18:00:00 +0100
+  projecto: Umbral
+  local: Capela da Senhora da Azinheira
+  cidade: S. Martinho da Anta, Sabrosa
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright), Pedro Pires Cabral (field recordings)
+
+- datahora: 2021-08-26 21:00:00 +0100
+  projecto: Umbral
+  local: Casa de Mateus
+  cidade: Vila Real
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright), Pedro Pires Cabral (field recordings)
+
+- datahora: 2022-02-09 21:00:00 +0000
+  projecto: Umbral
+  local: Teatro Municipal
+  cidade: Bragança
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f, bass cl), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright), Pedro Pires Cabral (field recordings)
+  
 # - datahora: 2020-03-28 16:30:00 +0000
 #   projecto: La Passion de Jeanne d'Arc
 #   local: Faculdade de Belas Artes
