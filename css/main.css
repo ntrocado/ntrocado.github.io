@@ -192,10 +192,20 @@ section.texto {
 hr {
     border: solid 1px #736473;
 }
-.video {
-  aspect-ratio: 16 / 9;
-  width: 100%;
+.container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
 }
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 form {
     padding-top: 1em;
     padding-bottom: 1em;
