@@ -182,10 +182,6 @@ li#concertos {
     float: left;
     margin-right: 1em;
 }
-p.texto {
-    text-align: justify;
-    text-indent: 4em;
-}
 section.texto {
     margin-bottom: 2em;
 }
