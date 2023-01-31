@@ -1,0 +1,132 @@
+---
+layout: post
+title: "Lisp and cl-collider in Bela"
+categories: software
+---
+
+<p>
+I started using a <a href="https://bela.io/">Bela</a> board. It works with a series of programming languages, including SuperCollider. But I&rsquo;d rather use Lisp through cl-collider, which is unsupported. I spent way more time than I&rsquo;d like to admit trying to get this to work, but I finally did it! For my reference and for the improbable benefit of anyone else playing with this, here&rsquo;s how to set things up.
+</p>
+
+<div id="outline-container-org05c918a" class="outline-2">
+<h2 id="org05c918a">Install Clozure CL in Bela</h2>
+<div class="outline-text-2" id="text-org05c918a">
+<p>
+We need an ARM 32-bit implementation. SBCL has a port, but it doesn&rsquo;t support threads. Use <a href="https://ccl.clozure.com/download.html">CCL</a>. Following the <a href="https://github.com/Clozure/ccl/releases/tag/v1.12">instructions for the current release</a>, download both the source code and the bootstrapping binaries for <code>linuxarm</code>, copy them over to Bela, unpack, launch the CCL image and run <code>(rebuild-ccl :full t)</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0ccf74" class="outline-2">
+<h2 id="orge0ccf74">Use a fixed version of <code>osc</code></h2>
+<div class="outline-text-2" id="text-orge0ccf74">
+<p>
+To avoid compile errors in CCL use <a href="https://github.com/ntrocado/osc.git">my fork of the <code>osc</code> library</a>. Clone it to <code>local-projects</code> on the host machine.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org90a2672" class="outline-2">
+<h2 id="org90a2672">Bundle cl-collider</h2>
+<div class="outline-text-2" id="text-org90a2672">
+<p>
+On the host machine, create a <a href="https://www.quicklisp.org/beta/bundles.html">Quicklisp bundle</a> for <code>cl-collider</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org055a2c9" class="outline-2">
+<h2 id="org055a2c9">Create a file called <code>bela.lisp</code> with the following contents:</h2>
+<div class="outline-text-2" id="text-org055a2c9">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span class="org-keyword">require</span> <span class="org-string">"cl-collider"</span>)
+
+(<span class="org-keyword">in-package</span> <span class="org-builtin">:ccl</span>)
+
+(advise ccl::resolve-address (<span class="org-keyword">let</span> ((arglist (list* <span class="org-builtin">:address-family</span>
+                                                   <span class="org-builtin">:internet</span>
+                                                   arglist)))
+                               (<span class="org-keyword">:do-it</span>))
+        <span class="org-builtin">:when</span> <span class="org-builtin">:around</span>
+        <span class="org-builtin">:name</span> <span class="org-builtin">:internet</span>)
+
+(<span class="org-keyword">in-package</span> <span class="org-builtin">:sc</span>)
+
+<span class="org-comment-delimiter">;;; </span><span class="org-comment">the following are needed for working with the Trill UGens at https://github.com/jreus/Trill_SC</span>
+
+(defugen (trill-raw <span class="org-string">"TrillRaw"</span>)
+    (<span class="org-type">&amp;key</span> (i2c-bus 1) (i2c-address #x20) (noise-threshold 0) (pre-scaler 2) (reset-baseline 0.0))
+  ((<span class="org-builtin">:kr</span> (multinew new 'multiout-ugen 11
+                  i2c-bus i2c-address noise-threshold pre-scaler reset-baseline))))
+
+(defugen (trill-centroids <span class="org-string">"TrillCentroids"</span>)
+    (<span class="org-type">&amp;key</span> (i2c-bus 1) (i2c-address #x20) (noise-threshold 0) (pre-scaler 2) (reset-baseline 0.0))
+  ((<span class="org-builtin">:kr</span> (multinew new 'multiout-ugen 11
+                  i2c-bus i2c-address noise-threshold pre-scaler reset-baseline))))
+
+(<span class="org-keyword">in-package</span> <span class="org-builtin">:sc-user</span>)
+
+(setf *s* (make-external-server <span class="org-string">"bela"</span>
+                                <span class="org-builtin">:port</span> 5000
+                                <span class="org-builtin">:server-options</span> (make-server-options <span class="org-builtin">:block-size</span> 16)))
+
+(<span class="org-keyword">unless</span> (boot-p *s*)
+  (<span class="org-keyword">loop</span> <span class="org-builtin">:initially</span> (server-boot *s*)
+        <span class="org-builtin">:with</span> start <span class="org-builtin">:=</span> (get-universal-time)
+        <span class="org-builtin">:do</span> (sleep 1)
+        <span class="org-builtin">:until</span> (or (boot-p *s*) (&gt; (get-universal-time) (+ start 10)))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgede8322" class="outline-2">
+<h2 id="orgede8322">Copy the bundle and the lisp file to a new directory on Bela</h2>
+<div class="outline-text-2" id="text-orgede8322">
+<p>
+For example:
+<code>scp /path-to-bundle-and-file/ root@192.168.6.2:~/bela-lisp/</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge11bca7" class="outline-2">
+<h2 id="orge11bca7">Run</h2>
+<div class="outline-text-2" id="text-orge11bca7">
+<p>
+<code>armcl --load "bundle" --load "bela" -S 8000000 -Z 8000000</code>
+</p>
+
+<p>
+This will hopefully leave you at the repl with the server booted and ready to play.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8dd7fe4" class="outline-2">
+<h2 id="org8dd7fe4">Run at startup</h2>
+<div class="outline-text-2" id="text-org8dd7fe4">
+<p>
+Create a <code>systemd</code> process (that runs the above command, or alternatively that loads a prebuilt image) and <code>enable</code> it—follow <a href="https://learn.bela.io/using-bela/bela-techniques/running-a-program-as-a-service/">this guide</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef83b21" class="outline-2">
+<h2 id="orgef83b21">Connect to a running instance on Bela - live coding / hot rewire</h2>
+<div class="outline-text-2" id="text-orgef83b21">
+<p>
+It&rsquo;s possible to connect to a <code>scsynth</code> server running on Bela. From the host use the following:
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(setf *s* (make-external-server <span class="org-string">"bela"</span>
+                                <span class="org-builtin">:port</span> 5000
+                                <span class="org-builtin">:just-connect-p</span> t))
+</pre>
+</div>
+
+<p>
+For a more sophisticated option, it&rsquo;s also possible to use <code>swank</code> or <code>slynk</code> to connect to the running lisp instance on Bela.
+</p>
+</div>
+</div>
