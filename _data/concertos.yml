@@ -610,13 +610,19 @@
   projecto: Ward / Trocado / Tavares
   local: Auditório da FEUP
   cidade: Porto
-  membros: Tom Ward (as, f), Nuno Trocado (g, elec), Sérgio Tavares (b)
+  membros: Tom Ward (as, f, cl), Nuno Trocado (g, elec), Sérgio Tavares (b)
 
 - datahora: 2023-05-26 21:30:00 +0100
   projecto: Ward / Trocado / Tavares
-  local: TBA
+  local: Clube Thyrsense
   cidade: Santo Tirso
-  membros: Tom Ward (as, f), Nuno Trocado (g, elec), Sérgio Tavares (b)
+  membros: Tom Ward (as, f, cl), Nuno Trocado (g, elec), Sérgio Tavares (b)
+
+- datahora: 2023-07-16 22:00:00 +0100
+  projecto: Umbral
+  local: Jardins do Palácio de Cristal
+  cidade: Porto
+  membros: Nuno Trocado (g), João Pedro Brandão (as, f), Sérgio Tavares (b), Acácio Salero (d), Catarina Lacerda (actress), Jorge Louraço (playwright), Pedro Pires Cabral (field recordings)
 
 - datahora: 2023-08-12 15:30:00 +0200
   projecto: Billy Martin Bezau Beats Orchestra
