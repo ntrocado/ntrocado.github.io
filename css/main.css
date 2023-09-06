@@ -40,7 +40,7 @@ ul.org-ul {
 ul.org-ul li {
     margin-bottom: .5em;
 }
-h1, h2, h3, h4, p, li, dl {
+h1, h2, h3, h4, p, li, dl, figcaption {
     color: #F8F8F8;
     font-family: quicksandregular;
 }
@@ -119,6 +119,10 @@ p.footpara {
 }
 li.post {
     margin-bottom: 2.5em;
+}
+figcaption {
+    font-size: 0.8em;
+    color: #736473;
 }
 .cssmenu ul {
     margin-bottom: 0.5em;
