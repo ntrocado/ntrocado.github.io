@@ -50,12 +50,10 @@ h2 {
     background-color: #343530;
     text-align: center;
 }
-h2.post-title {
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-}
-h2.post-title a, h3 a {
+h2 a, h3 a {
     text-decoration: none;
+}
+h2 a:visited, h3 a:visited {
     color: #F8FDE5;
 }
 h1 {
@@ -84,14 +82,17 @@ dt {
     font-weight: bold;
 }
 h3 {
-	margin-top: 0.5em;
-	font-weight: bold;
+    margin-top: 0.5em;
+    font-weight: bold;
 }
 h4 {
     color: #736473;
     text-align: right;
     margin-top: -0.9em;
     margin-bottom: -0.9em;
+}
+li {
+    margin-bottom: 1.1em;
 }
 .rss {
     margin-bottom: 1.1em
@@ -125,13 +126,13 @@ figcaption {
     color: #736473;
 }
 .cssmenu ul {
-    margin-bottom: 0.5em;
     padding: 0;
     list-style-type: none;
     width: auto;
     position: relative;
     display: block;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
 .cssmenu ul:after {
     content: '';
@@ -142,6 +143,7 @@ figcaption {
     display: inline;
     float: left;
     margin-right: 1em;
+    margin-bottom: 0;
 }
 .cssmenu li a {
     float: left;
