@@ -12,19 +12,22 @@
     <link>{{ site.url }}</link>
     <atom:link href="{{ site.url }}/{{ page.path }}" rel="self" type="application/rss+xml" />
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    {% assign feed_items = site.feed_items | default: 20 %} 
-    {% for news in site.news limit:feed_items %}
-      <item>
-        <title>{{ news.title | xml_escape }}</title>
-        {% if news.excerpt %}
-          <description>{{ news.excerpt | xml_escape }}</description>
-        {% else %}
-          <description>{{ news.content | xml_escape }}</description>
-        {% endif %}
-        <pubDate>{{ news.date | date_to_rfc822 }}</pubDate>
-         <guid isPermaLink="false">{{ news.id }}</guid>
-        <link>{{ site.url }}</link>
-      </item>
+    {% assign counter = 0 %}
+    {% for news in site.news reversed %}
+      {% if counter < 11 %}
+        <item>
+          <title>{{ news.title | xml_escape }}</title>
+          {% if news.excerpt %}
+            <description>{{ news.excerpt | xml_escape }}</description>
+          {% else %}
+            <description>{{ news.content | xml_escape }}</description>
+          {% endif %}
+          <pubDate>{{ news.date | date_to_rfc822 }}</pubDate>
+           <guid isPermaLink="false">{{ news.id }}</guid>
+          <link>{{ site.url }}</link>
+        </item>
+      {% endif %}
+      {% assign counter = counter | plus: 1 %}
     {% endfor %}
   </channel>
 </rss>
