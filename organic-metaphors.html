@@ -35,7 +35,7 @@ description: A collection of quotes using organic metaphors to describe free imp
         {% if item.source contains '://' %}
         <span class="citation-source"><a href="{{ item.source }}" target="_blank" rel="noopener">[source]</a></span>
         {% else %}
-        <span class="citation-source">[{{ item.source }}]</span>
+        . <span class="citation-source">{{ item.source }}</span>
         {% endif %}
       {% endif %}
     </div>
@@ -57,7 +57,7 @@ description: A collection of quotes using organic metaphors to describe free imp
         {% if item.source contains '://' %}
         <span class="citation-source"><a href="{{ item.source }}" target="_blank" rel="noopener">[source]</a></span>
         {% else %}
-        <span class="citation-source">[{{ item.source }}]</span>
+        . <span class="citation-source">{{ item.source }}</span>
         {% endif %}
       {% endif %}
     </div>
