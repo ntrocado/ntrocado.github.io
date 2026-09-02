@@ -1,0 +1,66 @@
+---
+layout: default
+title: Nuno Trocado - Organic metaphors in free improvisation
+description: A collection of quotes using organic metaphors to describe free improvisation.
+---
+
+<h2>Organic metaphors in free improvisation</h2>
+
+<section class="texto">
+  <p>
+    A collection of quotes using organic metaphors to describe free improvisation.
+  </p>
+</section>
+
+<div class="organic-stream">
+  {% assign dated_items = site.data.organic_metaphors | where_exp: "item", "item.date != 'n.d.' and item.date != nil" | sort: 'date' | reverse %}
+  {% assign undated_items = site.data.organic_metaphors | where_exp: "item", "item.date == 'n.d.' or item.date == nil" %}
+
+  {% for item in dated_items %}
+  <article class="organic-quote" id="{{ item.author | slugify }}-{{ forloop.index }}">
+    <div class="quote-body">
+      {{ item.quote | markdownify }}
+    </div>
+    <div class="quote-citation">
+      <span class="citation-author">{{ item.author }}</span>
+      {% if item.date %}
+      <span class="citation-year">
+        ({% assign date_str = item.date | append: "" %}{% if date_str.size == 4 %}{{ item.date }}{% elsif date_str.size == 7 %}{{ item.date | append: "-01" | date: "%b %Y" }}{% else %}{{ item.date | date: "%d %b %Y" }}{% endif %})
+      </span>
+      {% endif %}
+      {% if item.title %}
+      <span class="citation-title">— {{ item.title }}</span>
+      {% endif %}
+      {% if item.source %}
+        {% if item.source contains '://' %}
+        <span class="citation-source"><a href="{{ item.source }}" target="_blank" rel="noopener">[source]</a></span>
+        {% else %}
+        <span class="citation-source">[{{ item.source }}]</span>
+        {% endif %}
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+
+  {% for item in undated_items %}
+  <article class="organic-quote" id="{{ item.author | slugify }}-undated-{{ forloop.index }}">
+    <div class="quote-body">
+      {{ item.quote | markdownify }}
+    </div>
+    <div class="quote-citation">
+      <span class="citation-author">{{ item.author }}</span>
+      <span class="citation-year">(n.d.)</span>
+      {% if item.title %}
+      <span class="citation-title">— {{ item.title }}</span>
+      {% endif %}
+      {% if item.source %}
+        {% if item.source contains '://' %}
+        <span class="citation-source"><a href="{{ item.source }}" target="_blank" rel="noopener">[source]</a></span>
+        {% else %}
+        <span class="citation-source">[{{ item.source }}]</span>
+        {% endif %}
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</div>

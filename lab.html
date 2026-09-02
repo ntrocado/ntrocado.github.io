@@ -4,12 +4,19 @@ title: Nuno Trocado - Lab
 ---
 <h2>Index</h2>
 <ul>
+  <li>
+    <div class="outline-2">
+      <h2><a href="/organic-metaphors.html">Organic metaphors in free improvisation</a></h2>
+      <p>A collection of quotes using organic metaphors to describe free improvisation.</p>
+    </div>
+  </li>
   {% for post in site.posts %}
   <li>
     <div class="outline-2">
-      <h2>{{post.title}}</h2>
-      <p>{{post.summary}} <a href="{{ post.url }}">[read]</a></p>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <p>{{ post.summary }}</p>
     </div>
   </li>
   {% endfor %}
 </ul>
+

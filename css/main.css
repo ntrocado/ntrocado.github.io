@@ -56,6 +56,9 @@ h2 a, h3 a {
 h2 a:visited, h3 a:visited {
     color: #F8FDE5;
 }
+h2 a:hover, h3 a:hover {
+    color: #7A7E6A;
+}
 h1 {
     font-family: quicksandregular, Georgia, sans-serif;
     letter-spacing: 0.9em;
@@ -111,6 +114,9 @@ div.outline-2 h2, h2.footnotes {
     background-color: #0E0D0E;
     color: #F8FDE5;
     text-align: left;
+}
+div.outline-2 h2 a {
+    text-decoration: none;
 }
 sup a.footref {
     margin-left: 0.5em;
@@ -270,4 +276,68 @@ input[type=submit]:focus {
 }
 .button-box {
     display: flex;
+}
+
+/* --- Organic Metaphors Editorial Stream --- */
+
+.organic-stream {
+    margin-top: 2em;
+    margin-bottom: 3.5em;
+}
+
+.organic-quote {
+    margin-bottom: 3.5em;
+}
+
+.organic-quote .quote-body {
+    color: #F8F8F8;
+    font-size: 1.05em;
+    line-height: 1.6em;
+}
+
+.organic-quote .quote-body p {
+    margin-top: 0;
+    margin-bottom: 0.8em;
+    line-height: 1.6em;
+}
+
+.organic-quote .quote-citation {
+    margin-top: 0.7em;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    color: #7A7E6A;
+}
+
+.organic-quote .citation-author {
+    font-weight: bold;
+    color: #F8FDE5;
+}
+
+.organic-quote .citation-year {
+    color: #736473;
+}
+
+.organic-quote .citation-title {
+    color: #F8F8F8;
+}
+
+.organic-quote .citation-source {
+    color: #736473;
+}
+
+.organic-quote .citation-source a {
+    color: #F8FDE5;
+    text-decoration: underline;
+}
+
+.organic-quote .citation-source a:hover {
+    color: #7A7E6A;
+}
+
+.organic-quote img {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    display: block;
+    max-width: 50%;
+    height: auto;
 }
