@@ -21,9 +21,13 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script defer src="https://kit.fontawesome.com/d9dbbbf466.js"></script>
+
+    <!-- fonts: Cabinet Grotesk -->
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500,700,800&display=swap" rel="stylesheet">
     
     <!-- link to main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/main.css?v=8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=15">
 
     <!-- rss -->
     <link rel="alternate" type="application/rss+xml" title="News from Nuno Trocado's website" href="/news.xml">
@@ -46,6 +50,15 @@
       </main>
       {% include footer.html %}
     </div>
-    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a').forEach(function(a) {
+          var t = a.textContent.trim();
+          if (t.startsWith('[') && t.endsWith(']')) {
+            a.classList.add('bracket-link');
+          }
+        });
+      });
+    </script>
   </body>
 </html>
