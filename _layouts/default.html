@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M6D1JFWN2"></script>
@@ -19,10 +20,10 @@
     {% endif %}
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://kit.fontawesome.com/d9dbbbf466.js"></script>
+    <script defer src="https://kit.fontawesome.com/d9dbbbf466.js"></script>
     
     <!-- link to main stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/main.css?v=4">
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=8">
 
     <!-- rss -->
     <link rel="alternate" type="application/rss+xml" title="News from Nuno Trocado's website" href="/news.xml">
@@ -34,11 +35,15 @@
   </head>
   
   <body>
-    
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="front">
-      {% include titulo.html %}
-      {% include menu.html %}
-      {{ content }}
+      <header class="site-header">
+        {% include titulo.html %}
+        {% include menu.html %}
+      </header>
+      <main id="main-content">
+        {{ content }}
+      </main>
       {% include footer.html %}
     </div>
     

@@ -1,4 +1,4 @@
-<div class='cssmenu'>
+<nav class='cssmenu' aria-label="Main Navigation">
   <ul>
     <li {% if page.url == "/bio.html" %}class="active"{% endif %}><a href="/bio.html">bio</a></li>
     <li {% if page.url contains "/project" %}class="active"{% endif %}><a href="/projects.html">projects</a></li>
@@ -6,4 +6,4 @@
     <li {% if page.url == "/lab.html" or page.url contains "/organic-metaphors" or page.layout == "post" %}class="active"{% endif %}><a href="/lab.html">lab</a></li>
     <li><a href="mailto:ntrocado@gmail.com">contact</a></li>
   </ul>
-</div>
+</nav>
