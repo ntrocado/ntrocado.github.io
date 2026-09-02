@@ -526,4 +526,7 @@ input[type=submit]:focus {
     .organic-quote {
         padding-left: 0.9em;
     }
+    .organic-quote img {
+        max-width: 70%;
+    }
 }
