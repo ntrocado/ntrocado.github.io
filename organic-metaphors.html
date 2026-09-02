@@ -13,8 +13,8 @@ description: A collection of quotes using organic metaphors to describe free imp
 </section>
 
 <div class="organic-stream">
-  {% assign dated_items = site.data.organic_metaphors | where_exp: "item", "item.date != 'n.d.' and item.date != nil" | sort: 'date' | reverse %}
-  {% assign undated_items = site.data.organic_metaphors | where_exp: "item", "item.date == 'n.d.' or item.date == nil" %}
+  {% assign dated_items = site.data.organic_metaphors | where_exp: "item", "item.date != 'n.d.'" | sort: 'date' | reverse %}
+  {% assign undated_items = site.data.organic_metaphors | where_exp: "item", "item.date == 'n.d.'" %}
 
   {% for item in dated_items %}
   <article class="organic-quote" id="{{ item.author | slugify }}-{{ forloop.index }}">
