@@ -16,7 +16,8 @@
     {% for news in site.news reversed %}
       {% if counter < 11 %}
         <item>
-          <title>{{ news.title | xml_escape }}</title>
+          {% assign news_title = news.title | default: news.content | strip_html | truncatewords: 8 %}
+          <title>{{ news_title | xml_escape }}</title>
           {% if news.excerpt %}
             <description>{{ news.excerpt | xml_escape }}</description>
           {% else %}

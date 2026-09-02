@@ -12,9 +12,43 @@ description: The website of guitarist and composer Nuno Trocado.
 </div>
 <ul>
   {% for news_item in site.news reversed %}
+    {% if forloop.index <= 10 %}
     <li class="news-item">
       <strong>{{news_item.date  | date: "%Y-%m-%d"}}</strong> {{news_item.content}}
     </li>
-    {% endfor %}
+    {% else %}
+    <li class="news-item older-news" style="display: none;">
+      <strong>{{news_item.date  | date: "%Y-%m-%d"}}</strong> {{news_item.content}}
+    </li>
+    {% endif %}
+  {% endfor %}
 </ul>
+
+{% if site.news.size > 10 %}
+<p id="older-news-wrapper" style="text-align: right; margin-top: 0.5em;">
+  <a href="#older" id="older-toggle">[older]</a>
+</p>
+<script>
+  (function() {
+    var toggle = document.getElementById('older-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        var olderItems = document.querySelectorAll('.older-news');
+        for (var i = 0; i < olderItems.length; i++) {
+          olderItems[i].style.display = '';
+        }
+        var wrapper = document.getElementById('older-news-wrapper');
+        if (wrapper) wrapper.style.display = 'none';
+      });
+    }
+  })();
+</script>
+<noscript>
+  <style>
+    .older-news { display: list-item !important; }
+    #older-news-wrapper { display: none !important; }
+  </style>
+</noscript>
+{% endif %}
 
