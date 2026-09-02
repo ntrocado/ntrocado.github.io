@@ -70,11 +70,14 @@ a.titulo {
     color: #F8F8F8;
     text-decoration: none;
 }
-sup a, p a, li a {
+a, a:link {
     text-decoration: underline;
     color: #F8FDE5;
 }
 a:visited {
+    color: #7A7E6A;
+}
+a:hover, a:focus {
     color: #7A7E6A;
 }
 h3, p, li, dl {
@@ -184,11 +187,17 @@ p.notation img {
     img { 
   	width: auto; /* for ie 8 */
     }
-}
-li#concertos {
+li#concertos,
+li.news-item,
+li.agenda-item {
     text-indent: -2em;
     margin-bottom: .7em;
     margin-left: 2em;
+}
+.media-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 .floatleft {
     float: left;

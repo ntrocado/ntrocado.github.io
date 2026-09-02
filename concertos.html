@@ -4,10 +4,10 @@ title: Nuno Trocado - Concertos
 ---
 
 <h2>Future</h2>
-<ul id="concertos">
+<ul class="agenda-list">
   {% for concerto in site.data.concertos %}
     {% if concerto.datahora >= site.time %}
-      <li id="concertos">
+      <li class="agenda-item">
 	{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}
       </li>
     {% endif %}
@@ -15,10 +15,10 @@ title: Nuno Trocado - Concertos
 </ul>
 
 <h2>Past</h2>
-<ul id="concertos">
+<ul class="agenda-list">
   {% for concerto in site.data.concertos reversed%}
     {% if concerto.datahora < site.time %}
-      <li id="concertos">
+      <li class="agenda-item">
 	{{concerto.datahora | date: "%Y-%m-%d"}} . {{concerto.datahora | date: "%H:%M"}} . <strong>{{concerto.projecto}}</strong> . <small>{{concerto.membros}}</small> . {{concerto.local}} . {{concerto.cidade}}		
       </li>
     {% endif %}
