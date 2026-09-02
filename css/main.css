@@ -10,6 +10,21 @@ body {
     background: #0E0D0E;
     color: #F8F8F8;
     font-size: 100%;
+    font-family: quicksandregular, sans-serif;
+}
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    background: #343530;
+    color: #F8FDE5;
+    padding: 0.5em 1em;
+    z-index: 1000;
+    text-decoration: none;
+    font-weight: bold;
+}
+.skip-link:focus {
+    top: 10px;
 }
 #front {
     border-radius: .8em;
@@ -50,10 +65,21 @@ h2 {
     background-color: #343530;
     text-align: center;
 }
-h2 a, h3 a {
-    text-decoration: none;
+/* General link styles */
+a, a:link {
+    text-decoration: underline;
+    color: #F8FDE5;
 }
-h2 a:visited, h3 a:visited {
+a:visited {
+    color: #7A7E6A;
+}
+a:hover, a:focus {
+    color: #7A7E6A;
+}
+
+h2 a, h2 a:link, h2 a:visited,
+h3 a, h3 a:link, h3 a:visited {
+    text-decoration: none;
     color: #F8FDE5;
 }
 h2 a:hover, h3 a:hover {
@@ -66,19 +92,13 @@ h1 {
     margin-top: 0;
     margin-bottom: 0.2em;
 }
-a.titulo {
+a.titulo,
+a.titulo:link,
+a.titulo:visited,
+a.titulo:hover,
+a.titulo:focus {
     color: #F8F8F8;
     text-decoration: none;
-}
-a, a:link {
-    text-decoration: underline;
-    color: #F8FDE5;
-}
-a:visited {
-    color: #7A7E6A;
-}
-a:hover, a:focus {
-    color: #7A7E6A;
 }
 h3, p, li, dl {
     font-size: 1em;
@@ -183,10 +203,6 @@ img {
 p.notation img {
     padding: 10px;
 }
-@media \0screen {
-    img { 
-  	width: auto; /* for ie 8 */
-    }
 li#concertos,
 li.news-item,
 li.agenda-item {
@@ -295,7 +311,13 @@ input[type=submit]:focus {
 }
 
 .organic-quote {
-    margin-bottom: 3.5em;
+    margin-bottom: 4.5em;
+    padding-left: 1.25em;
+    border-left: 2px solid #343530;
+}
+
+.organic-quote:last-child {
+    margin-bottom: 4.5em;
 }
 
 .organic-quote .quote-body {
@@ -311,7 +333,7 @@ input[type=submit]:focus {
 }
 
 .organic-quote .quote-citation {
-    margin-top: 0.7em;
+    margin-top: 0.9em;
     font-size: 0.9em;
     line-height: 1.5em;
     color: #7A7E6A;
@@ -330,17 +352,17 @@ input[type=submit]:focus {
     color: #F8F8F8;
 }
 
-.organic-quote .citation-source {
+.organic-quote .citation-source,
+.organic-quote .citation-source a,
+.organic-quote .citation-source a:link,
+.organic-quote .citation-source a:visited {
     color: #736473;
-}
-
-.organic-quote .citation-source a {
-    color: #F8FDE5;
     text-decoration: underline;
 }
 
-.organic-quote .citation-source a:hover {
-    color: #7A7E6A;
+.organic-quote .citation-source a:hover,
+.organic-quote .citation-source a:focus {
+    color: #F8FDE5;
 }
 
 .organic-quote img {
